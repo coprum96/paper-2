@@ -277,9 +277,11 @@ export function DebriefScreen() {
 
 export function CompleteScreen() {
   const person = useResearchStore((s) => s.person);
-  const errors = validatePerson(person);
   const [sync, setSync] = useState<SyncResult | null>(null);
   const [syncing, setSyncing] = useState(false);
+  const researcherView =
+    typeof window !== 'undefined' &&
+    new URLSearchParams(window.location.search).get('debug') === '1';
 
   const upload = async () => {
     setSyncing(true);
@@ -295,7 +297,7 @@ export function CompleteScreen() {
 
   return (
     <ResearchShell title={COPY.completeTitle}>
-      <Card className="space-y-4">
+      <Card className="space-y-5">
         <div className="flex items-center gap-3 pb-2 border-b border-[#d9d2c5]">
           <img
             src={`${import.meta.env.BASE_URL}img/spbu_gerb.png`}
@@ -304,72 +306,65 @@ export function CompleteScreen() {
           />
           <div className="min-w-0">
             <p className="text-xs uppercase tracking-wide text-[#8B1E3F]">{COPY.institutionShort}</p>
-            <p className="font-semibold">{COPY.completeTitle}</p>
+            <p className="font-semibold text-lg">{COPY.completeTitle}</p>
           </div>
         </div>
-        <p className="text-sm text-[#3d3d3d]">{COPY.completeBody}</p>
-        <p className="text-xs text-[#7a7368] break-all">ID: {person.participant_id}</p>
-        <p className="text-xs text-[#7a7368]">
-          Условие: {person.condition_pressure} / {person.condition_intervention} · Study {person.study}
-          {person.pilot ? ' · pilot' : ''}
-          {person.duration_sec != null ? ` · ${Math.round(person.duration_sec / 60)} мин` : ''}
-        </p>
+
+        <p className="text-sm sm:text-base text-[#3d3d3d] leading-relaxed">{COPY.completeBody}</p>
 
         <div
-          className={`rounded-xl border text-xs p-3 ${
+          className={`rounded-xl border px-4 py-3.5 text-sm sm:text-[15px] leading-snug ${
             syncing
               ? 'border-[#d9d2c5] bg-[#faf8f4] text-[#5c5c5c]'
               : sync?.ok
-                ? 'border-emerald-200 bg-emerald-50 text-emerald-900'
+                ? 'border-emerald-300 bg-emerald-50 text-emerald-900 font-medium'
                 : 'border-amber-300 bg-amber-50 text-amber-950'
           }`}
         >
-          {syncing && <p>Отправка данных исследователю (Supabase)…</p>}
-          {!syncing && sync?.ok && (
-            <p>
-              Данные сохранены на сервере СПбГУ-исследования (Supabase). Исследователь увидит сессию в
-              таблице <code>paper2_sessions</code>.
-            </p>
-          )}
+          {syncing && <p>{COPY.completeSaving}</p>}
+          {!syncing && sync?.ok && <p>{COPY.completeSaved}</p>}
           {!syncing && sync && !sync.ok && (
-            <div className="space-y-2">
-              <p className="font-semibold">Не удалось отправить на сервер</p>
-              <p>{sync.message}</p>
-              <p>
-                Если видите ошибку RLS / policy: в Supabase → SQL Editor заново выполните{' '}
-                <strong>весь</strong> файл <code>supabase/paper2_sessions.sql</code> (создаёт RPC{' '}
-                <code>upsert_paper2_session</code>). Локальные файлы ниже всё равно можно скачать.
-              </p>
-              <SecondaryButton onClick={() => void upload()}>Повторить отправку</SecondaryButton>
+            <div className="space-y-3">
+              <p>{COPY.completeSaveFailed}</p>
+              <SecondaryButton onClick={() => void upload()}>{COPY.completeRetry}</SecondaryButton>
+              {researcherView && <p className="text-xs opacity-80 break-words">{sync.message}</p>}
             </div>
           )}
         </div>
 
-        {errors.length > 0 ? (
-          <div className="rounded-xl border border-amber-300 bg-amber-50 text-amber-950 text-xs p-3 space-y-1">
-            <p className="font-semibold">Проверка экспорта:</p>
-            {errors.map((e) => (
-              <p key={e}>• {e}</p>
-            ))}
+        {researcherView && (
+          <div className="space-y-3 pt-2 border-t border-dashed border-[#d9d2c5]">
+            <p className="text-xs text-[#7a7368]">Режим исследователя (?debug=1)</p>
+            <p className="text-xs text-[#7a7368] break-all">ID: {person.participant_id}</p>
+            <p className="text-xs text-[#7a7368]">
+              {person.condition_pressure} / {person.condition_intervention} · Study {person.study}
+              {person.pilot ? ' · pilot' : ''}
+              {person.duration_sec != null ? ` · ${Math.round(person.duration_sec / 60)} мин` : ''}
+            </p>
+            {validatePerson(person).length === 0 ? (
+              <p className="text-xs text-emerald-800">Структура: participant + 4 trials OK</p>
+            ) : (
+              <ul className="text-xs text-amber-900 list-disc pl-4">
+                {validatePerson(person).map((e) => (
+                  <li key={e}>{e}</li>
+                ))}
+              </ul>
+            )}
+            <div className="flex flex-col gap-2">
+              <PrimaryButton onClick={() => exportPersonJson(person)}>{COPY.downloadJson}</PrimaryButton>
+              <PrimaryButton onClick={() => exportTrialsCsv(person)}>{COPY.downloadCsv}</PrimaryButton>
+              <PrimaryButton onClick={() => exportPersonCsv(person)}>{COPY.downloadPerson}</PrimaryButton>
+            </div>
+            <SecondaryButton
+              onClick={() => {
+                clearPersistedPerson();
+                window.location.href = `${window.location.pathname}?research=1&study=${person.study}${person.pilot ? '&pilot=1' : ''}&debug=1`;
+              }}
+            >
+              Начать новую сессию
+            </SecondaryButton>
           </div>
-        ) : (
-          <p className="text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2">
-            Структура данных в порядке (participant + 4 trials). Локальная копия тоже доступна ниже.
-          </p>
         )}
-        <div className="flex flex-col gap-3">
-          <PrimaryButton onClick={() => exportPersonJson(person)}>{COPY.downloadJson}</PrimaryButton>
-          <PrimaryButton onClick={() => exportTrialsCsv(person)}>{COPY.downloadCsv}</PrimaryButton>
-          <PrimaryButton onClick={() => exportPersonCsv(person)}>{COPY.downloadPerson}</PrimaryButton>
-        </div>
-        <SecondaryButton
-          onClick={() => {
-            clearPersistedPerson();
-            window.location.href = `${window.location.pathname}?research=1&study=${person.study}${person.pilot ? '&pilot=1' : ''}`;
-          }}
-        >
-          Начать новую сессию
-        </SecondaryButton>
       </Card>
     </ResearchShell>
   );
