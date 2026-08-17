@@ -336,8 +336,9 @@ export function CompleteScreen() {
               <p className="font-semibold">Не удалось отправить на сервер</p>
               <p>{sync.message}</p>
               <p>
-                Частая причина: таблица ещё не создана. Выполните SQL из{' '}
-                <code>supabase/paper2_sessions.sql</code> в Supabase → SQL Editor.
+                Если видите ошибку RLS / policy: в Supabase → SQL Editor заново выполните{' '}
+                <strong>весь</strong> файл <code>supabase/paper2_sessions.sql</code> (создаёт RPC{' '}
+                <code>upsert_paper2_session</code>). Локальные файлы ниже всё равно можно скачать.
               </p>
               <SecondaryButton onClick={() => void upload()}>Повторить отправку</SecondaryButton>
             </div>

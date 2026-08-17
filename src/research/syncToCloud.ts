@@ -5,7 +5,7 @@ export type SyncResult =
   | { ok: true; mode: 'supabase' }
   | { ok: false; mode: 'supabase' | 'unconfigured'; message: string };
 
-/** Upsert full person+trials payload to Supabase so the researcher can download it. */
+/** Upsert full person+trials payload via SECURITY DEFINER RPC (avoids anon RLS upsert issues). */
 export async function syncPersonToSupabase(person: PersonRecord): Promise<SyncResult> {
   if (!isSupabaseConfigured()) {
     return {
@@ -35,12 +35,14 @@ export async function syncPersonToSupabase(person: PersonRecord): Promise<SyncRe
     updated_at: new Date().toISOString(),
   };
 
-  const { error } = await supabase.from('paper2_sessions').upsert(row, {
-    onConflict: 'participant_id',
-  });
+  const { error } = await supabase.rpc('upsert_paper2_session', { row });
 
   if (error) {
-    return { ok: false, mode: 'supabase', message: error.message };
+    const hint =
+      /row-level security|permission denied|function .* does not exist|PGRST202/i.test(error.message)
+        ? ' Выполните заново весь SQL из supabase/paper2_sessions.sql в Supabase → SQL Editor.'
+        : '';
+    return { ok: false, mode: 'supabase', message: `${error.message}${hint}` };
   }
   return { ok: true, mode: 'supabase' };
 }
