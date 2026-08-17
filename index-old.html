@@ -1,0 +1,3267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Буратино и Золотой Детектор</title>
+    <style>
+        :root {
+            --color-primary: #9333EA;
+            --color-secondary: #F59E0B;
+            --color-success: #10B981;
+            --color-danger: #DC2626;
+            --color-white: #ffffff;
+            --shadow-glow: 0 0 30px rgba(147, 51, 234, 0.5);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            color: white;
+            min-height: 100vh;
+        }
+
+        #app {
+            min-height: 100vh;
+            position: relative;
+            transition: background 1s ease;
+        }
+
+        /* Animated gradient backgrounds */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Particle system */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: particleFall 2s ease-out forwards;
+        }
+
+        @keyframes particleFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Glass card effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-card);
+            padding: 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Landing page */
+        #landing {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.8);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .game-subtitle {
+            font-size: 24px;
+            margin-bottom: 48px;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 16px 48px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 16px;
+            z-index: 1000;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        .coin-icon {
+            font-size: 24px;
+            animation: coinSpin 3s linear infinite;
+        }
+
+        @keyframes coinSpin {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+        }
+
+        /* Wisdom bar */
+        .wisdom-container {
+            margin-top: 8px;
+        }
+
+        .wisdom-bar {
+            width: 100px;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .wisdom-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-success), #34d399);
+            border-radius: 4px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px var(--color-success);
+        }
+
+        /* Game screen */
+        #game {
+            display: none;
+            padding-top: 100px;
+            padding-bottom: 40px;
+        }
+
+        /* Character display */
+        .character-display {
+            text-align: center;
+            margin-bottom: 24px;
+            animation: slideInTop 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideInTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .character-emoji {
+            font-size: 80px;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .character-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dialogue box */
+        .dialogue-box {
+            margin-bottom: 32px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .dialogue-text {
+            font-size: 20px;
+            line-height: 1.6;
+            min-height: 100px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Red flags section */
+        .red-flags {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(220, 38, 38, 0.2);
+            border: 2px solid rgba(220, 38, 38, 0.4);
+            border-radius: 12px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .red-flag-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .red-flag-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .red-flag-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .red-flag-item.identified {
+            background: rgba(16, 185, 129, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.5);
+        }
+
+        /* Choices */
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: slideInBottom 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        }
+
+        @keyframes slideInBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .choice-btn {
+            padding: 20px;
+            font-size: 18px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .choice-btn:hover {
+            transform: translateX(10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .choice-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        /* Ending screen */
+        .ending-screen {
+            text-align: center;
+        }
+
+        .ending-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .ending-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 32px 0;
+            flex-wrap: wrap;
+        }
+
+        .ending-stat {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            min-width: 150px;
+            animation: fadeIn 0.8s ease backwards;
+        }
+
+        .ending-stat:nth-child(1) { animation-delay: 0.2s; }
+        .ending-stat:nth-child(2) { animation-delay: 0.4s; }
+        .ending-stat:nth-child(3) { animation-delay: 0.6s; }
+
+        .ending-stat-value {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .ending-stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .achievement-badge {
+            font-size: 32px;
+            margin: 24px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--color-secondary), #fb923c);
+            border-radius: 12px;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .tips-section {
+            margin-top: 32px;
+            text-align: left;
+        }
+
+        .tip-item {
+            padding: 16px;
+            margin: 12px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-success);
+            animation: slideInLeft 0.5s ease backwards;
+        }
+
+        .tip-item:nth-child(1) { animation-delay: 0.8s; }
+        .tip-item:nth-child(2) { animation-delay: 0.9s; }
+        .tip-item:nth-child(3) { animation-delay: 1s; }
+        .tip-item:nth-child(4) { animation-delay: 1.1s; }
+        .tip-item:nth-child(5) { animation-delay: 1.2s; }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 32px;
+            }
+
+            .game-subtitle {
+                font-size: 18px;
+            }
+
+            .stats-bar {
+                top: 10px;
+                right: 10px;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .stat-item {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .character-emoji {
+                font-size: 60px;
+            }
+
+            .dialogue-text {
+                font-size: 18px;
+            }
+
+            .choice-btn {
+                padding: 16px;
+                font-size: 16px;
+            }
+
+            .ending-title {
+                font-size: 32px;
+            }
+
+            .ending-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Hide elements initially */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Character portrait */
+        .character-portrait {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            margin-bottom: 16px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 32px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 32px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .pdf-section {
+            margin: 24px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid var(--color-primary);
+        }
+        
+        .pdf-section h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--color-secondary);
+        }
+
+        /* Loading animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .loading {
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="gradient-bg"></div>
+        
+        <!-- Educational Materials Sidebar -->
+        <div id="eduSidebar" style="position: fixed; top: 100px; right: 20px; z-index: 999; display: none; flex-direction: column; gap: 12px;">
+            <button class="btn" onclick="openMaterial()" style="padding: 12px 16px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                <span>📖</span> Материал
+            </button>
+            <button class="btn" onclick="openQuestions()" style="padding: 12px 16px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                <span>❓</span> Вопросы
+            </button>
+            <button class="btn" onclick="openFlags()" style="padding: 12px 16px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                <span>🚩</span> Флажки
+            </button>
+        </div>
+        
+        <!-- Stats bar -->
+        <div class="stats-bar hidden" id="statsBar">
+            <div class="stat-item" id="coinStat">
+                <img src="item_gold_coins_5.jpg" alt="coins" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;" onerror="this.style.display='none';">
+                <span class="coin-icon" style="display: none;">🪙</span>
+                <span id="coinCount">5</span>
+            </div>
+            <div class="stat-item">
+                <div>
+                    <div>💡 <span id="wisdomCount">0</span>%</div>
+                    <div class="wisdom-container">
+                        <div class="wisdom-bar">
+                            <div class="wisdom-fill" id="wisdomFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Landing page -->
+        <div id="landing">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <img src="character_buratino_happy.jpg" alt="Buratino" style="width: 200px; height: auto; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); animation: float 3s ease-in-out infinite;" onerror="this.style.display='none';">
+                </div>
+                <h1 class="game-title">🪙 Буратино и Золотой Детектор</h1>
+                <p class="game-subtitle">Защита от финансового мошенничества</p>
+                <div style="margin: 32px 0; padding: 24px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 16px; border: 2px solid rgba(245, 158, 11, 0.5);">
+                    <div style="font-size: 24px; font-weight: bold; margin-bottom: 12px;">🌟 ФИНАНСОВО ГРАМОТНЫХ ГРАЖДАН:</div>
+                    <div id="citizenCounter" style="font-size: 64px; font-weight: bold; color: var(--color-secondary); text-shadow: 0 0 20px rgba(245, 158, 11, 0.6);">0</div>
+                </div>
+                <p style="font-size: 18px; margin: 24px 0; opacity: 0.9; max-width: 600px;">Присоединяйся к приключению Буратино! Научись распознавать финансовое мошенничество и защищать свои деньги от хитрых мошенников.</p>
+                <button class="btn btn-primary" id="startBtn" onclick="startGame()">✨ Начать приключение</button>
+            </div>
+        </div>
+
+        <!-- Game screen -->
+        <div id="game">
+            <div class="container">
+                <!-- Character display -->
+                <div class="character-display">
+                    <div class="character-emoji" id="characterEmoji">🦊</div>
+                    <div class="character-name" id="characterName">Лиса Алиса</div>
+                </div>
+
+                <!-- Dialogue box -->
+                <div class="glass-card dialogue-box">
+                    <div class="dialogue-text" id="dialogueText"></div>
+                    
+                    <!-- Red flags section -->
+                    <div class="red-flags hidden" id="redFlags">
+                        <div class="red-flag-title">🚩 Красные флажки мошенничества:</div>
+                        <div id="redFlagsList"></div>
+                    </div>
+                </div>
+
+                <!-- Choices -->
+                <div class="choices" id="choices"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        const gameState = {
+            coins: 5,
+            wisdom: 0,
+            currentLevel: 0,
+            currentDialogue: 0,
+            completedLevels: [],
+            achievements: [],
+            preTestScore: 0,
+            postTestScore: 0,
+            choicesHistory: [],
+            phase: 'landing', // landing, instructions, levelmap, story, survey, results
+            globalCitizensCount: 0
+        };
+
+        // Game data
+        // Character images
+        const characterImages = {
+            buratino_happy: 'character_buratino_happy.jpg',
+            buratino_cautious: 'character_buratino_cautious.jpg',
+            cricket_wise: 'character_cricket_wise.jpg',
+            karabas_aggressive: 'character_karabas_aggressive.jpg'
+        };
+        
+        const itemImages = {
+            coins: 'item_gold_coins_5.jpg',
+            detector: 'item_detector_mirror_golden.jpg',
+            envelope: 'item_envelope_golden_emblem.jpg',
+            plan: 'item_business_plan.jpg',
+            sparkles: 'effect_coin_sparkle.jpg'
+        };
+        
+        const backgroundImages = {
+            door: 'background_red_door_postman.jpg',
+            bank: 'background_bank_entrance.jpg'
+        };
+
+        const characters = {
+            buratino: {
+                name: "Буратино",
+                emoji: "🤡",
+                image: characterImages.buratino_happy,
+                emotions: { happy: "😊", sad: "😢", worried: "😰", proud: "😎" }
+            },
+            fox_alice: {
+                name: "Лиса Алиса",
+                emoji: "🦊",
+                emotions: { suspicious: "😏", persuasive: "😇", angry: "😠" }
+            },
+            cat_basilio: {
+                name: "Кот Базилио",
+                emoji: "🐱",
+                emotions: { sneaky: "😼", impatient: "😾" }
+            },
+            cricket: {
+                name: "Сверчок Джимини",
+                emoji: "🦗",
+                image: characterImages.cricket_wise,
+                emotions: { wise: "🤓", kind: "😊", teaching: "👨‍🏫" }
+            },
+            karabas: {
+                name: "Карабас Барабас",
+                emoji: "👺",
+                image: characterImages.karabas_aggressive,
+                emotions: { aggressive: "😠", sneaky: "😈" }
+            }
+        };
+
+        // All 6 Educational Materials with Full Content
+        const allEducationalMaterials = [
+            {
+                id: 1,
+                title: '📖 Материал 1: Финансовая грамотность',
+                sections: [
+                    {
+                        name: '🧡 Телесный барометр',
+                        content: 'Наше тело - это уникальный "детектор лжи". Когда что-то не так, оно подаёт сигналы:\n\n❄️ Холод в животе\n💪 Напряжение в плечах\n💔 Сжатие в груди\n🚓 Учащение пульса\n😅 Потливость ладоней\n\nЭто стоп-сигнал! Если чувствуешь тепло, лёгкость, расслабленность - продолжай.\n\nУчись слушать своё тело - оно знает правду раньше мозга!'
+                    },
+                    {
+                        name: '❓ Контрольные вопросы',
+                        content: '🔑 10 вопросов Золотого Детектора:\n\n1️⃣ Что это? (Уточни суть предложения)\n2️⃣ Почему это работает? (Механизм прибыли)\n3️⃣ КАК ИМЕННО это работает? (Конкретные детали)\n4️⃣ Перечислите все риски? (Честное описание)\n5️⃣ Где документы? (Законность)\n6️⃣ Кто отвечает? (Ответственность)\n7️⃣ Можно подождать? (Нет ли спешки)\n8️⃣ Кто советует? (Репутация)\n9️⃣ Почему я? (Почему именно мне)\n🔟 Что теряю? (Анализ потерь)\n\nЕсли не могут ответить чётко - это мошенничество!'
+                    },
+                    {
+                        name: '⏰ Правило 72 часов',
+                        content: '🛑 Никогда не принимай финансовые решения в спешке!\n\nДай себе минимум 72 часа (3 дня) на обдумывание.\n\n🚩 Мошенники всегда давят:\n• "Только сегодня!"\n• "Завтра будет поздно!"\n• "Осталось 2 места!"\n\n✅ Хорошие предложения подождут 3 дня.\n✅ За 72 часа видна правда.\n✅ Время - твой главный защитник.'
+                    },
+                    {
+                        name: '🔍 Микроскоп для мелкого шрифта',
+                        content: '📜 Всегда читай контракты полностью!\n\nОсобенно мелкий шрифт. Там скрываются:\n\n💸 Скрытые комиссии\n⚠️ Штрафы за досрочное погашение\n🚫 Ограничения на вывод денег\n🛡️ Отказ от ответственности\n⏳ Непредвиденные условия\n\n🚨 Не понимаешь - не подписывай!'
+                    },
+                    {
+                        name: '🧴 Правило 3 корзин',
+                        content: '💰 Распределяй деньги правильно:\n\n🔐 БЕЗОПАСНОСТЬ - 50%\n• Банковские вклады\n• Надёжные облигации\n• Подушка безопасности\n\n📈 РАЗВИТИЕ - 30%\n• Образование и курсы\n• Разумные инвестиции\n• Развитие навыков\n\n🎉 РАДОСТЬ - 20%\n• Удовольствия\n• Подарки\n• Развлечения\n\n⚠️ Никогда не вкладывай всё в одно место!'
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: '📖 Материал 2: Криптовалюта и МЛМ',
+                sections: [
+                    {
+                        name: '🪙 Что такое криптовалюта?',
+                        content: '💱 Цифровые деньги без управления государством.\n\n✅ Может быть полезной, но...\n⚠️ Часто используется для мошенничества!'
+                    },
+                    {
+                        name: '🚩 Красные флажки крипто-мошенничества',
+                        content: '❌ Обещание 500% годовых\n❌ Требование привлекать друзей (МЛМ)\n❌ Нет регулятора/лицензии\n❌ Только онлайн общение\n❌ Запрет говорить о доходах\n❌ "Уникальная технология"'
+                    },
+                    {
+                        name: '🔺 МЛМ структуры',
+                        content: '🚨 Доход идёт не от продажи продукта, а от привлечения новых участников.\n\nЭто пирамида!\n\n🔺 Структура:\n• Ты привлекаешь 5 человек\n• Каждый из них - ещё 5\n• И так далее...\n\n💥 Результат: Крах пирамиды!'
+                    },
+                    {
+                        name: '📄 Примеры мошенничества',
+                        content: '🦊 "LisaCoin" с обещанием роста в 1000%\n\n💄 Сетевой маркетинг косметики ("стань партнёром!")\n\n📱 "Инвестиционные группы" в мессенджерах\n\n🔥 "Быстрый заработок на крипте"\n\n🎯 "Торговые боты с гарантией"'
+                    },
+                    {
+                        name: '🛡️ Как защитить себя',
+                        content: '✅ Проверь регулятора (Центробанк)\n✅ Требуй белый договор\n✅ Не верь обещаниям быстрой прибыли\n✅ Задай 10 контрольных вопросов\n✅ Жди 72 часа перед решением\n✅ Проверь компанию в интернете'
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: '📖 Материал 3: Быстрые займы',
+                sections: [
+                    {
+                        name: '💸 Как работает быстрый заём',
+                        content: '1️⃣ Ты даёшь паспорт\n2️⃣ Получаешь 1,000₽ за "срок" (обычно неделю)\n3️⃣ Платишь назад 1,300₽ (+30% комиссия)\n\n🚨 Это кажется мало, но...'
+                    },
+                    {
+                        name: '🔴 Скрытый механизм',
+                        content: '📈 300% годовых = за 1₽ становится 3₽ за год\n\n🔁 Капитализация процентов (проценты на проценты)\n\n📉 Многоуровневое начисление\n\n💰 Комиссия за всё:\n• Продление\n• Запрос информации\n• SMS-уведомления\n• Досрочное погашение'
+                    },
+                    {
+                        name: '🕳️ Пример долговой ямы',
+                        content: '📅 День 1: Заняли 1,000₽ на неделю\n→ Не хватило денег → Продлили\n\n📅 Неделя 2: Теперь 1,300₽\n→ Опять не хватило → Опять продлили\n\n📅 Неделя 3: Теперь 1,600₽\n→ Опять продление\n\n📅 Через месяц: Должен 2,000₽+ от изначального 1,000₽!'
+                    },
+                    {
+                        name: '⚠️ Последствия',
+                        content: '🔴 Долговая яма (невозможно выбраться)\n🔴 Банкротство\n🔴 Коллекторы (угрозы, звонки родственникам)\n🔴 Потеря кредитной истории\n🔴 Психологическое давление'
+                    },
+                    {
+                        name: '✅ Альтернативы',
+                        content: '✅ Попросить у родителей/друзей\n✅ Решить финансовую проблему сначала\n✅ Банковский кредит (меньше %)\n✅ Накопить деньги\n✅ Заработать больше'
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: '📖 Материал 4: Красные флажки',
+                sections: [
+                    {
+                        name: '🚩 1. Обещание чудес',
+                        content: 'Примеры:\n• "500% годовых"\n• "Гарантированный доход"\n• "Никогда не теряет"\n• "Уникальная технология"\n\n🚨 Ответ: ТАКОГО НЕ СУЩЕСТВУЕТ!'
+                    },
+                    {
+                        name: '🚩 2. Срочность и давление',
+                        content: 'Примеры:\n• "Только сегодня!"\n• "Последний день предложения"\n• "Осталось 2 места"\n• "Спешите, заканчивается"\n\n🚨 Ответ: ДА, ЭТО ОБМАН!'
+                    },
+                    {
+                        name: '🚩 3. Отсутствие деталей',
+                        content: 'Примеры:\n• "Это сложно объяснить"\n• "Просто доверься"\n• "Механизм секретный"\n• "Волшебство работает"\n\n🚨 Ответ: НЕ ВКЛАДЫВАЙ!'
+                    },
+                    {
+                        name: '🚩 4. Требование конспирации',
+                        content: 'Примеры:\n• "Не рассказывай никому"\n• "Это между нами"\n• "Держи в тайне"\n• "Расскажешь - не поверят"\n\n🚨 Ответ: УБЕГАЙ!'
+                    },
+                    {
+                        name: '🚩 5. Поддельные доказательства',
+                        content: 'Примеры:\n• Фото дорогих машин\n• Скриншоты с доходами\n• Якобы отзывы\n• Фальшивые графики\n\n🚨 Ответ: ПРОВЕРЬ ИСТОЧНИК!'
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: '📖 Материал 5: Правильное инвестирование',
+                sections: [
+                    {
+                        name: '🌳 Правило дерева Мальвины',
+                        content: 'Деньги как дерево:\n\n🌱 СЕМЕНА = Капитал\nЭто твои исходные деньги. Их НЕЛЬЗЯ тратить! Они должны расти.\n\n🌿 ЛИСТЬЯ = Доход\nЭто прибыль, которую приносит капитал. Их можно использовать.\n\n⚡ УРАГАН = Риск\nМожет разрушить дерево. Поэтому нужна диверсификация.'
+                    },
+                    {
+                        name: '🧴 Правило 3 корзин',
+                        content: '🔐 БЕЗОПАСНОСТЬ - 50%\nПодушка на черный день\n• Банковский вклад\n• Наличные\n• Государственные облигации\n\n📈 РАЗВИТИЕ - 30%\nОбучение и инвестиции\n• Курсы и образование\n• Инвестиции в себя\n• Долгосрочные инвестиции\n\n🎉 РАДОСТЬ - 20%\nУдовольствия и подарки\n• Развлечения\n• Подарки\n• Путешествия'
+                    },
+                    {
+                        name: '📊 Реалистичные доходы',
+                        content: '🟢 Безопасно: 3-6% в год (вклады, облигации)\n🟡 Умеренно: 8-15% в год (акции, фонды)\n🟠 Рискованно: 20-30% в год (стартапы)\n🔴 Мошенничество: 100%+ в год\n\n✅ НОРМА: 8-15% в год - это реалистичный доход!'
+                    },
+                    {
+                        name: '👨‍💼 Работа с консультантами',
+                        content: '✅ Лицензированные финансовые консультанты\n✅ Проверенные брокеры\n✅ Сертифицированные специалисты\n✅ Зарегистрированные компании\n\n❌ Незнакомцы из интернета\n❌ "Менторы" без лицензий\n❌ Телеграм-каналы с "сигналами"'
+                    },
+                    {
+                        name: '📄 Построение финансового плана',
+                        content: '1️⃣ Определи цели (дом, образование, пенсия)\n2️⃣ Рассчитай сумму и срок\n3️⃣ Распредели по 3 корзинам\n4️⃣ Начни с малого (1000₽ в месяц)\n5️⃣ Увеличивай постепенно'
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: '📖 Материал 6: Презентация Карабаса - Анализ',
+                sections: [
+                    {
+                        name: '📊 Красивые слайды',
+                        content: 'КАРАБАС ПОКАЗЫВАЕТ:\n\n❌ Красивые графики (но откуда данные?)\n❌ Фото успешных людей (чьи это?)\n❌ Большие цифры (реальны ли?)\n❌ Привлекательный дизайн'
+                    },
+                    {
+                        name: '🔍 1. Механизм',
+                        content: '❓ "Как ИМЕННО деньги растут?"\n\n• Где инвестиции?\n• На что работают деньги?\n• Откуда прибыль?\n\n⚠️ Если не могут объяснить - уходи!'
+                    },
+                    {
+                        name: '🔍 2. История',
+                        content: '❓ "Сколько лет компании работает?"\n\n• Есть ли отчёты?\n• Есть ли сертификаты?\n• Проверить в реестре\n\n🚩 Молодая компания с большими обещаниями = Опасно!'
+                    },
+                    {
+                        name: '🔍 3. Риски',
+                        content: '❓ "Какие риски?"\n\n❌ Полное отрицание = Обман\n✅ Честное описание = Хорошо\n✅ Страховка = Хорошо\n\n💡 Любая инвестиция имеет риски!'
+                    },
+                    {
+                        name: '🔍 4. Управление',
+                        content: '❓ "Кто управляет?"\n\n• Имена реальных людей\n• Проверить их квалификацию\n• Ищи в интернете\n\n🚩 Анонимные управляющие = Опасно!'
+                    },
+                    {
+                        name: '🔍 5. Регулятор',
+                        content: '❓ "Кто проверяет?"\n\n• Государственный надзор?\n• Лицензия?\n• Регистрация?\n\n✅ Проверить на сайте Центробанка\n\n🚩 Нет регулятора = Опасно!'
+                    },
+                    {
+                        name: '✅ Конклюзия',
+                        content: '🎭 Красивая презентация не равно гарантия!\n\n✅ Всегда задавай КОНТРОЛЬНЫЕ ВОПРОСЫ!\n✅ Требуй конкретные ответы!\n✅ Проверяй все данные!\n\n🔑 Ты - Финансовый Детектив!'
+                    }
+                ]
+            }
+        ];
+        
+        // Educational Materials Content
+        const educationalMaterial = {
+            title: 'Обучающий материал - Финансовая грамотность',
+            sections: [
+                {
+                    name: '🧡 Телесный барометр',
+                    content: 'Наше тело - это уникальный "детектор лжи". Когда что-то не так, оно подаёт сигналы: холод в животе, напряжение в плечах, сжатие в груди. Это стоп-сигнал! Если чувствуешь тепло, лёгкость, расслабленность - продолжай. Учись слушать своё тело - оно знает правду раньше мозга!'
+                },
+                {
+                    name: '❓ Контрольные вопросы',
+                    content: 'Всегда задавай эти вопросы: 1) КАК ИМЕННО это работает? 2) Почему вы сами не вложили все деньги? 3) Какие РИСКИ? 4) Можно подумать до завтра? Если не могут ответить чётко - это мошенничество!'
+                },
+                {
+                    name: '⏰ Правило 72 часов',
+                    content: 'Никогда не принимай финансовые решения в спешке! Дай себе минимум 72 часа (3 дня) на обдумывание. Мошенники всегда давят: "Только сегодня!", "Завтра будет поздно!". Хорошее предложение не исчезнет за 3 дня.'
+                },
+                {
+                    name: '🔍 Микроскоп для мелкого шрифта',
+                    content: 'Всегда читай контракты полностью! Особенно мелкий шрифт. Там скрываются: комиссии, штрафы, ограничения на вывод денег, отказ от ответственности. Не понимаешь - не подписывай!'
+                },
+                {
+                    name: '🧴 Правило 3 корзин',
+                    content: 'Распределяй деньги правильно: 50% - Безопасность (банковские вклады, надёжные облигации), 30% - Развитие (образование, рискованные инвестиции), 20% - Радость (то, что приносит удовольствие). Никогда не вкладывай всё в одно место!'
+                }
+            ]
+        };
+        
+        const controlQuestions = [
+            'Что это? (Уточни суть предложения)',
+            'Почему это работает? (Механизм прибыли)',
+            'Как это работает? (Конкретные детали)',
+            'Перечисли все риски? (Честное описание)',
+            'Где документы? (Законность)',
+            'Кто отвечает? (Ответственность)',
+            'Можно подождать? (Нет ли спешки)',
+            'Кто советует? (Репутация)',
+            'Почему я? (Почему именно мне)',
+            'Что теряю? (Анализ потерь)'
+        ];
+        
+        const redFlags = [
+            { name: 'Обещание чудес', examples: ['500% годовых', 'быстрое обогащение', 'гарантированный доход'] },
+            { name: 'Срочность и давление', examples: ['только сегодня', 'последний день', 'спешите, осталось 2 места'] },
+            { name: 'Отсутствие деталей', examples: ['никак не объясняют механизм', 'говорят "это сложно"', 'уходят от ответа'] },
+            { name: 'Требование конспирации', examples: ['не рассказывай никому', 'держи в тайне', 'это между нами'] },
+            { name: 'Поддельные доказательства', examples: ['фото машин', 'якобы отзывы', 'фальшивые скриншоты'] }
+        ];
+        
+        // Modal functions
+        function openMaterial() {
+            showModal('📖 ' + educationalMaterial.title, () => {
+                let html = '';
+                educationalMaterial.sections.forEach(section => {
+                    html += `
+                        <div class="pdf-section">
+                            <h3>${section.name}</h3>
+                            <p style="font-size: 16px; line-height: 1.6;">${section.content}</p>
+                        </div>
+                    `;
+                });
+                return html;
+            });
+        }
+        
+        function openQuestions() {
+            showModal('❓ Контрольные вопросы Золотого Детектора', () => {
+                let html = '<div style="font-size: 16px; line-height: 1.8;">';
+                controlQuestions.forEach((q, i) => {
+                    html += `<div style="padding: 12px; margin: 8px 0; background: rgba(255, 255, 255, 0.1); border-radius: 8px; border-left: 4px solid var(--color-success);">${i + 1}. ${q}</div>`;
+                });
+                html += '</div>';
+                return html;
+            });
+        }
+        
+        function openFlags() {
+            showModal('🚩 Красные флажки финансового мошенничества', () => {
+                let html = '';
+                redFlags.forEach(flag => {
+                    html += `
+                        <div class="pdf-section">
+                            <h3>🚩 ${flag.name}</h3>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+                                ${flag.examples.map(ex => `<span style="padding: 8px 12px; background: rgba(220, 38, 38, 0.2); border-radius: 8px; font-size: 14px; border: 1px solid rgba(220, 38, 38, 0.4);">${ex}</span>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+                return html;
+            });
+        }
+        
+        function showModal(title, contentFunc) {
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.onclick = (e) => {
+                if (e.target === overlay) closeModal(overlay);
+            };
+            
+            const content = document.createElement('div');
+            content.className = 'modal-content';
+            content.innerHTML = `
+                <div class="modal-close" onclick="closeModal(this.closest('.modal-overlay'))">×</div>
+                <h2 style="font-size: 28px; margin-bottom: 24px; text-align: center;">${title}</h2>
+                ${contentFunc()}
+            `;
+            
+            overlay.appendChild(content);
+            document.body.appendChild(overlay);
+        }
+        
+        function closeModal(overlay) {
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.remove(), 300);
+        }
+        
+        window.openMaterial = function() {
+            const currentChapter = gameState.currentLevel;
+            const material = allEducationalMaterials[currentChapter] || allEducationalMaterials[0];
+            showMaterialModal(material);
+        };
+        
+        function showMaterialModal(material) {
+            showModal(material.title, () => {
+                let html = '';
+                material.sections.forEach(section => {
+                    html += `
+                        <div class="pdf-section">
+                            <h3>${section.name}</h3>
+                            <p style="font-size: 16px; line-height: 1.6; white-space: pre-line;">${section.content}</p>
+                        </div>
+                    `;
+                });
+                return html;
+            });
+        }
+        
+        window.openMaterial_old = openMaterial;
+        window.openQuestions = openQuestions;
+        window.openFlags = openFlags;
+        window.closeModal = closeModal;
+        
+        // Pre-test questions
+        const preTestQuestions = [
+            {
+                id: 'pre_1',
+                text: 'Что ты сделаешь, если незнакомец предложит вложить деньги с гарантией 500% дохода?',
+                options: ['Сразу соглашусь', 'Попрошу подробности', 'Откажусь', 'Посоветуюсь с родителями'],
+                correct: 2,
+                explanation: 'Гарантия 500% дохода - явный признак мошенничества.',
+                reward: 10
+            },
+            {
+                id: 'pre_2',
+                text: 'Быстрый заём - это:',
+                options: ['Легкий способ получить деньги', 'Финансовая ловушка с высокими процентами', 'Современный банковский продукт', 'Не знаю'],
+                correct: 1,
+                explanation: 'Быстрые займы обычно имеют очень высокие проценты.',
+                reward: 10
+            },
+            {
+                id: 'pre_3',
+                text: 'Что важнее при инвестициях:',
+                options: ['Быстрый доход', 'Надёжность', 'Совет друзей', 'Красивая реклама'],
+                correct: 1,
+                explanation: 'Надёжность - ключевой фактор при инвестициях.',
+                reward: 10
+            },
+            {
+                id: 'pre_4',
+                text: 'Признак финансовой пирамиды:',
+                options: ['Гарантированный доход', 'Необходимость привлекать новых участников', 'Красивый сайт', 'Низкий первоначальный взнос'],
+                correct: 1,
+                explanation: 'Классический признак пирамиды.',
+                reward: 10
+            },
+            {
+                id: 'pre_5',
+                text: 'Что такое диверсификация:',
+                options: ['Способ заработать быстро', 'Распределение средств по разным направлениям', 'Вид мошенничества', 'Не знаю'],
+                correct: 1,
+                explanation: 'Диверсификация - это способ снижения рисков.',
+                reward: 10
+            },
+            {
+                id: 'pt_2',
+                text: 'Какой из этих признаков НЕ является красным флажком?',
+                options: [
+                    'Требование немедленного решения',
+                    'Регистрация компании и офис',
+                    'Обещание 500% годовых',
+                    'Невозможность вернуть деньги'
+                ],
+                correct: 1,
+                explanation: 'Законные компании имеют офис и регистрацию. Остальные пункты - явные признаки мошенничества.'
+            },
+            {
+                id: 'pt_3',
+                text: 'Что такое финансовая пирамида?',
+                options: [
+                    'Схема, где прибыль снимается с вкладов новых инвесторов',
+                    'Легальная инвестиция в настоящее золото',
+                    'Компания, которая продает физические товары',
+                    'Банковский депозит с фиксированным процентом'
+                ],
+                correct: 0,
+                explanation: 'В финансовой пирамиде прибыль ранних инвесторов платится за счет вкладов новых участников. Это обязательно закончится крахом.'
+            },
+            {
+                id: 'pt_4',
+                text: 'Кто может дать вам финансовый совет?',
+                options: [
+                    'Незнакомец в интернете',
+                    'Друг, который "разбогател" быстро',
+                    'Лицензированный финансовый консультант',
+                    'Человек, обещающий гарантию прибыли'
+                ],
+                correct: 2,
+                explanation: 'Только лицензированные специалисты, работающие с регулятором, могут давать финансовые советы. Они несут ответственность за свои рекомендации.'
+            },
+            {
+                id: 'pt_5',
+                text: 'Что делать, если вам предлагают инвестицию под давлением?',
+                options: [
+                    'Спешить и вложить деньги',
+                    'Дать время и хорошо подумать',
+                    'Спросить совета у друзей в соцсетях',
+                    'Вложить небольшую сумму для теста'
+                ],
+                correct: 1,
+                explanation: 'Давление и спешка - основные инструменты мошенников. Всегда давайте себе время обдумать инвестицию.'
+            },
+            {
+                id: 'pt_6',
+                text: 'Какой годовой доход считается реалистичным?',
+                options: [
+                    '1000% в год',
+                    '100% в год',
+                    '5-15% в год',
+                    '50% в год'
+                ],
+                correct: 2,
+                explanation: 'Рынок в среднем растет на 8-10% в год. Доходы выше 20-30% в год считаются высокорисковыми. Предложения 100%+ - это всегда обман.'
+            },
+            {
+                id: 'pt_7',
+                text: 'Что означает diversification (диверсификация)?',
+                options: [
+                    'Вложить все деньги в одно место',
+                    'Распределить инвестиции между разными активами',
+                    'Положить деньги в подушку',
+                    'Найти один гарантированный источник дохода'
+                ],
+                correct: 1,
+                explanation: 'Диверсификация - это распределение рисков между разными активами. Это основной принцип защиты от потерь.'
+            }
+        ];
+
+        // Chapter 1 Test (5 questions)
+        const chapter1Test = [
+            {
+                id: 'ch1_q1',
+                text: 'Что должно насторожить в предложении Карабаса?',
+                options: ['Красивый костюм', 'Яркая презентация (визуальная атака)', 'Упоминание театра', 'Имя Карабаса'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch1_q2',
+                text: 'Почему фраза "Гарантирую!" - это красный флаг?',
+                options: ['Карабас некрасиво говорит', 'Нет конкретики механизма гарантии', 'Он громко кричит', 'У него планшет'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch1_q3',
+                text: 'О чем говорит фраза "Только сегодня!"?',
+                options: ['Скидка действительно кончится', 'Это маркетинговый прием', 'Карабас очень занят', 'Планшет сломается'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch1_q4',
+                text: 'Что означает сжатие в животе?',
+                options: ['Простудился', 'Голоден', 'Телесный сигнал опасности', 'Съел что-то не то'],
+                correct: 2,
+                reward: 15
+            },
+            {
+                id: 'ch1_q5',
+                text: 'Почему важно задавать уточняющие вопросы?',
+                options: ['Чтобы показаться умным', 'Чтобы выиграть время', 'Чтобы проверить достоверность', 'Чтобы обидеть собеседника'],
+                correct: 2,
+                reward: 15
+            }
+        ];
+        
+        // Chapter 2 Test (5 questions)
+        const chapter2Test = [
+            {
+                id: 'ch2_q1',
+                text: 'Коллега предлагает инвестировать 10000р, через месяц получить 50000р. Главный признак мошенничества:',
+                options: ['Слишком маленькая сумма', 'Искусственная срочность + нереалистичная доходность', 'Предложение от коллеги', 'Конкретная сумма'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch2_q2',
+                text: 'Вам предлагают вложиться в крипто, отрицают риски. Что это означает?',
+                options: ['Действительно безрисковая', 'Отрицание рисков - красный флаг', 'Хорошо изученный проект', 'Надёжная инвестиция'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch2_q3',
+                text: 'По "Правилу 72 часов" после получения предложения нужно:',
+                options: ['Сразу вложить', 'Быстро решить', 'Не принимать решение в спешке', 'Спросить друзей'],
+                correct: 2,
+                reward: 15
+            },
+            {
+                id: 'ch2_q4',
+                text: 'Что НЕ нужно делать при инвестициях:',
+                options: ['Изучить условия', 'Спешить', 'Задать вопросы', 'Проверить информацию'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch2_q5',
+                text: 'Какой из вопросов "золотого детектора" главный:',
+                options: ['Сколько стоит?', 'Когда откроется?', 'КАК ИМЕННО это работает?', 'Кто ещё участвует?'],
+                correct: 2,
+                reward: 15
+            }
+        ];
+        
+        // Chapter 3 Test (5 questions)
+        const chapter3Test = [
+            {
+                id: 'ch3_q1',
+                text: 'Что такое "300% годовых"?',
+                options: ['Бесплатный кредит', 'Доход от инвестиций', 'Ежегодная комиссия банка', 'Реальная стоимость займа с огромной переплатой'],
+                correct: 3,
+                reward: 15
+            },
+            {
+                id: 'ch3_q2',
+                text: 'Какой скрытый механизм используют МФО?',
+                options: ['Социальная поддержка', 'Капитализация процентов и многоуровневое начисление', 'Благотворительность', 'Государственное субсидирование'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch3_q3',
+                text: 'Что происходит при досрочном погашении кредита?',
+                options: ['Списываются все проценты', 'Начисляется бонус', 'Взимается комиссия', 'Кредит аннулируется'],
+                correct: 2,
+                reward: 15
+            },
+            {
+                id: 'ch3_q4',
+                text: 'Почему люди берут быстрые займы?',
+                options: ['Из жадности', 'Из-за финансовых трудностей', 'Для развлечения', 'Из-за рекламы'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch3_q5',
+                text: 'Какие последствия "быстрого заёма"?',
+                options: ['Нет', 'Небольшие проценты', 'Долговая яма', 'Положительные'],
+                correct: 2,
+                reward: 15
+            }
+        ];
+        
+        // Chapter 4 Test (5 questions)
+        const chapter4Test = [
+            {
+                id: 'ch4_q1',
+                text: 'Лиса предлагает инвестицию, у Буратино учащился пульс. Что это означает?',
+                options: ['Предложение выгодное', 'Организм сигнализирует об опасности', 'Нормальная реакция', 'Нужно спешить'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch4_q2',
+                text: 'Кот говорит "Только сегодня!" Какой вопрос поможет?',
+                options: ['Сколько точно заплачу?', 'Можно подождать 72 часа?', 'Кто участвует?', 'Где офис?'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch4_q3',
+                text: 'Вам говорят "Риски? Исключены!" Это означает:',
+                options: ['Действительно безопасно', 'Типичная ложь мошенника', 'Профессиональный подход', 'Хороший знак'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch4_q4',
+                text: 'Какой признак мошенничества ВСЕГДА срабатывает?',
+                options: ['Красивая презентация', 'Создание искусственной срочности', 'Деловой костюм', 'Множество отзывов'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch4_q5',
+                text: 'Действительно ли нужно доверять рекомендациям друзей?',
+                options: ['Да, всегда', 'Нет, никогда', 'Только если друг авторитет', 'Проверить самим'],
+                correct: 3,
+                reward: 15
+            }
+        ];
+        
+        // Chapter 5 Test (6 questions)
+        const chapter5Test = [
+            {
+                id: 'ch5_q1',
+                text: 'Папа Карло: "Это семена, а не листья!" Что это означает?',
+                options: ['Закопай в землю', 'Это капитал, который нельзя тратить', 'Раздай друзьям', 'Потрать быстро'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch5_q2',
+                text: 'Буратино получил 100 монет. Как распределить в 3 корзины?',
+                options: ['40/40/20', '50/30/20', '60/20/20', '33/33/34'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch5_q3',
+                text: 'Какой процент в корзину "Развитие"?',
+                options: ['20%', '30%', '40%', '50%'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch5_q4',
+                text: 'Почему "безопасность" важнее чем "радость"?',
+                options: ['Скучнее', 'Защита от потерь', 'Модно', 'Рекомендуют'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch5_q5',
+                text: 'Как понять реалистичный ли доход?',
+                options: ['Больше 100% в год', 'Гарантирован', '8-15% в год - норма', 'Обещает много'],
+                correct: 2,
+                reward: 15
+            },
+            {
+                id: 'ch5_q6',
+                text: 'Правило дерева означает:',
+                options: ['Сажать деревья', 'Диверсифицировать инвестиции', 'Копить деньги', 'Не тратить'],
+                correct: 1,
+                reward: 15
+            }
+        ];
+        
+        // Chapter 6 Test (5 questions)
+        const chapter6Test = [
+            {
+                id: 'ch6_q1',
+                text: 'Волшебник предлагает 4 монеты → 100 за неделю. Главное правило защиты:',
+                options: ['Согласиться', 'Применить все 5 техник', 'Спросить друзей', 'Медленнее подумать'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch6_q2',
+                text: 'Какая техника помогает ВСЕГДА?',
+                options: ['Логика', 'Интуиция/Телесный барометр', 'Друзья', 'Калькулятор'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch6_q3',
+                text: 'На что смотреть в первую очередь:',
+                options: ['Красоту презентации', 'На срочность и давление', 'На рекламу', 'На цену'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch6_q4',
+                text: 'Что значит "Ты - финансовый детектив":',
+                options: ['Ты богат', 'Умеешь видеть опасность', 'Работаешь в банке', 'Любишь деньги'],
+                correct: 1,
+                reward: 15
+            },
+            {
+                id: 'ch6_q5',
+                text: 'Главный урок игры:',
+                options: ['Деньги - главное', 'Твой мозг - золотой ключик', 'Нужно быть жадным', 'Всем не доверять'],
+                correct: 1,
+                reward: 15
+            }
+        ];
+        
+        // Scenario Test (Level 2)
+        const scenarioTest = [
+            { text: 'Подруга предлагает вложить 1000 рублей в её новый бизнес-проект. Обещает удвоить сумму через месяц. При этом просит никому не рассказывать.', correct: 0, reward: 6 },
+            { text: 'Банк предлагает вклад под 8% годовых. Договор прозрачный, есть все документы.', correct: 1, reward: 6 },
+            { text: 'Незнакомец в интернете предлагает быстро заработать на криптовалюте. Обещает 50% дохода еженедельно.', correct: 0, reward: 6 },
+            { text: 'Коллега просит одолжить 10 000 рублей под 5% в месяц. Гарантирует возврат через 3 месяца.', correct: 0, reward: 6 },
+            { text: 'Рекламное предложение: "Купи курс трейдинга за 15 000 рублей и зарабатывай миллионы!"', correct: 0, reward: 6 },
+            { text: 'Вам звонят и предлагают инвестировать в якобы перспективный стартап. Настаивают на срочности.', correct: 0, reward: 6 },
+            { text: 'Подруга приглашает в сетевой маркетинг, где можно продавать косметику и получать проценты.', correct: 0, reward: 6 },
+            { text: 'Государственный пенсионный фонд предлагает инвестиционную программу с прозрачными условиями.', correct: 1, reward: 6 },
+            { text: 'В интернете реклама: "Моментальный кредит без проверок под 1% в день"', correct: 0, reward: 6 },
+            { text: 'Знакомый предлагает вложиться в его бизнес. Показывает документы, бизнес-план, готов детально всё объяснить.', correct: 1, reward: 6 }
+        ];
+        
+        // Complex Test (Level 3)
+        const complexTest = [
+            {
+                text: 'Вам предлагают "уникальный инвестиционный проект". Первая реакция:',
+                options: ['Быстро соглашусь', 'Попрошу подробную презентацию', 'Начну расспрашивать о деталях и рисках', 'Посоветуюсь с экспертом'],
+                correct: 2,
+                reward: 20
+            },
+            {
+                text: 'В презентации используют фото дорогих машин. Ваши мысли:',
+                options: ['"Хочу такую же!"', '"Значит, проект работает"', '"Интересно, чьи это реально фото?"', '"Машина - не показатель успеха"'],
+                correct: 3,
+                reward: 20
+            },
+            {
+                text: '"Все уже участвуют, ты последний!" Ваша реакция:',
+                options: ['Соглашусь немедленно', 'Испугаюсь', 'Спрошу данные об "участниках"', 'Почувствую дискомфорт'],
+                correct: 2,
+                reward: 20
+            },
+            {
+                text: 'При навязывании срочной сделки вы:',
+                options: ['Примете решение быстро', 'Поддадитесь панике', 'Попросите время', 'Согласитесь из страха'],
+                correct: 2,
+                reward: 20
+            },
+            {
+                text: 'Если обещают гарантированный доход, вы:',
+                options: ['Поверите сразу', 'Попросите письменные гарантии', 'Усомнитесь', 'Захотите вложить'],
+                correct: 2,
+                reward: 20
+            }
+        ];
+        
+        // Post-test questions
+        const postTestQuestions = [
+            {
+                id: 'post_1',
+                text: 'Что делать, если предлагают срочно вложить деньги?',
+                options: ['Принять немедленно', 'Подождать 72 часа и проанализировать', 'Спросить совета у прохожего', 'Игнорировать'],
+                correct: 1,
+                explanation: 'Правило отсрочки',
+                reward: 20
+            },
+            {
+                id: 'post_2',
+                text: 'Какой главный признак финансовой атаки?',
+                options: ['Красивая презентация', 'Создание искусственной срочности', 'Высокая сумма', 'Харизматичный собеседник'],
+                correct: 1,
+                explanation: 'Создание срочности - классический признак манипуляции',
+                reward: 20
+            },
+            {
+                id: 'post_3',
+                text: 'Что важнее при работе с деньгами:',
+                options: ['Быстрый заработок', 'Безопасность и понимание', 'Совет знаменитостей', 'Размер суммы'],
+                correct: 1,
+                explanation: 'Безопасность и понимание - ключевой принцип',
+                reward: 20
+            },
+            {
+                id: 'post_4',
+                text: 'Как проверить финансовое предложение?',
+                options: ['Посмотреть рекламу', 'Задать 10 контрольных вопросов', 'Довериться интуиции', 'Посоветоваться с одним человеком'],
+                correct: 1,
+                explanation: 'Системный подход с контрольными вопросами',
+                reward: 20
+            },
+            {
+                id: 'post_5',
+                text: 'Что такое "телесный барометр"?',
+                options: ['Прибор', 'Физиологическая реакция', 'Фитнес-программа', 'Не знаю'],
+                correct: 1,
+                explanation: 'Телесный барометр - это твой внутренний защитник',
+                reward: 20
+            },
+            {
+                id: 'post_2',
+                text: 'Как работает финансовая пирамида?',
+                options: [
+                    'Компания инвестирует на реальном рынке',
+                    'Прибыль платится из денег новых участников',
+                    'Компания производит товары',
+                    'Это безопасная инвестиция'
+                ],
+                correct: 1
+            },
+            {
+                id: 'post_3',
+                text: 'Какой годовой доход считается реалистичным?',
+                options: [
+                    '1000% в год',
+                    '500% в год',
+                    '10-15% в год',
+                    '100% в год'
+                ],
+                correct: 2
+            },
+            {
+                id: 'post_4',
+                text: 'Что делать при инвестиции под давлением?',
+                options: [
+                    'Быстро вложить',
+                    'Спешить, чтобы не упустить',
+                    'Дать себе время подумать',
+                    'Вложить чужие деньги'
+                ],
+                correct: 2
+            },
+            {
+                id: 'post_5',
+                text: 'Как называется техника манипуляции через знакомых?',
+                options: [
+                    'Социальная инженерия',
+                    'Пирамида',
+                    'Дилинг',
+                    'Спекуляция'
+                ],
+                correct: 0
+            },
+            {
+                id: 'post_6',
+                text: 'Что означает диверсификация?',
+                options: [
+                    'Вложить все в одно место',
+                    'Распределить риски между активами',
+                    'Положить деньги под подушку',
+                    'Играть на бирже'
+                ],
+                correct: 1
+            },
+            {
+                id: 'post_7',
+                text: 'Как проверять контракт?',
+                options: [
+                    'Подписать, не читая',
+                    'Прочитать и проверить все условия',
+                    'Спросить друзей в интернете',
+                    'Верить на слово'
+                ],
+                correct: 1
+            },
+            {
+                id: 'post_8',
+                text: 'Что такое "временное давление"?',
+                options: [
+                    'Срочность (сегодня или никогда)',
+                    'Давление друзей',
+                    'Давление семьи',
+                    'Психологическое давление'
+                ],
+                correct: 0
+            },
+            {
+                id: 'post_9',
+                text: 'Кто может дать финансовый совет?',
+                options: [
+                    'Незнакомец в интернете',
+                    'Друг-миллионер',
+                    'Лицензированный консультант',
+                    'Любой желающий'
+                ],
+                correct: 2
+            },
+            {
+                id: 'post_10',
+                text: 'Что делать, если потеряли деньги?',
+                options: [
+                    'Вложить еще больше',
+                    'Сообщить в полицию и регуляторы',
+                    'Попробовать другой сайт',
+                    'Забыть об этом'
+                ],
+                correct: 1
+            }
+        ];
+
+        const levels = [
+            {
+                id: 0,
+                title: 'Пять золотых монет',
+                subtitle: 'Пролог - Первый урок',
+                gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                dialogues: [
+                    {
+                        character: 'cricket',
+                        emotion: 'kind',
+                        text: 'Буратино! Твоя бабушка оставила тебе пять золотых монет - целое состояние! Но помни, много людей захотят их забрать. Научимся их защищать?',
+                        choices: [
+                            { text: 'Да! Я готов учиться!', icon: '😊', wisdom: 10, next: 1 },
+                            { text: 'Может, сначала потрачу...', icon: '😐', wisdom: -5, next: 1 },
+                            { text: 'Не страшно, справлюсь сам', icon: '😏', wisdom: 0, next: 1 }
+                        ]
+                    },
+                    {
+                        character: 'cricket',
+                        emotion: 'teaching',
+                        text: 'Первый инструмент - Телесный Барометр. Когда что-то не так, твоё тело первым знает. Почувствуешь холод, напряжение? Это стоп-сигнал! Тепло, лёгкость? Продолжай.',
+                        choices: [
+                            { text: 'Понимаю! Буду слушать тело', icon: '💡', wisdom: 15, nextLevel: true }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        text: 'Что означает холод в животе при деловом предложении?',
+                        options: [
+                            'Голод',
+                            'Предупреждение от интуиции',
+                            'Радость'
+                        ],
+                        correct: 1,
+                        explanation: 'Тело нас предупреждает раньше мозга. Слушай эти сигналы!',
+                        reward: 15
+                    },
+                    {
+                        text: 'Когда НЕ нужно доверять интуиции?',
+                        options: [
+                            'Никогда',
+                            'Когда ты голоден и раздражён',
+                            'Ничего не может помешать интуиции'
+                        ],
+                        correct: 1,
+                        explanation: 'Если ты голоден, устал или раздражён, интуиция может ошибаться.',
+                        reward: 15
+                    },
+                    {
+                        text: 'Как проверить, надёжное ли предложение?',
+                        options: [
+                            'Используй Телесный Барометр',
+                            'Спроси друга',
+                            'Посмотри в интернете'
+                        ],
+                        correct: 0,
+                        explanation: 'Телесный Барометр работает всегда. Если он говорит "нет" - слушай его!',
+                        reward: 15
+                    }
+                ]
+            },
+            {
+                id: 1,
+                title: 'Карабас и инвестиционное предложение',
+                subtitle: 'Распознавание классического мошенничества',
+                gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                dialogues: [
+                    {
+                        character: 'buratino',
+                        emotion: 'happy',
+                        text: 'Карабас подходит с планшетом и графиками: "Буратино, дружище! Слышал, ты получил наследство? Поздравляю! У меня для тебя эксклюзивное предложение! Я создаю новый театр - революционный проект! Вкладываешь пять монет - становишься совладельцем! Через месяц твои пять превратятся в пятьдесят!"',
+                        choices: [
+                            { text: 'Правда? Расскажи подробнее!', icon: '🤩', wisdom: -10, next: 1 },
+                            { text: 'Звучит подозрительно...', icon: '🤔', wisdom: 20, next: 1 },
+                            { text: 'Это обман, ухожу', icon: '🛡️', wisdom: 40, next: 3 }
+                        ]
+                    },
+                    {
+                        character: 'buratino',
+                        emotion: 'happy',
+                        text: 'Карабас показывает бизнес-план: "Смотри, вот бизнес-план! Красивый, правда? Вот графики, вот прогнозы, вот всё расчитано!"',
+                        choices: [
+                            { text: 'Выглядит профессионально, вложу!', icon: '💸', wisdom: -20, next: 2 },
+                            { text: 'Могу я задать вопросы?', icon: '🔍', wisdom: 30, next: 2 },
+                            { text: 'Слишком красиво, чтобы быть правдой', icon: '⚠️', wisdom: 35, next: 2 }
+                        ]
+                    },
+                    {
+                        character: 'cricket',
+                        emotion: 'teaching',
+                        text: 'Давай применим "Золотой Детектор" - четыре контрольных вопроса:\n\n1️⃣ "КАК ИМЕННО пять монет станут пятьюдесятью?"\n🚩 Карабас: "Это сложная финансовая схема..."\n\n2️⃣ "А если не получится? Вернёте мои деньги?"\n🚩 Карабас: "Конечно! То есть... риски есть везде..."\n\n3️⃣ "Почему вы сами не вложили все свои деньги?"\n🚩 Карабас: "Деньги заморожены в других проектах!"\n\n4️⃣ "Можно я подумаю до завтра?"\n🚩 Карабас: "НЕТ! Только сегодня такие условия!"',
+                        redFlags: ['Нет конкретики', 'Гарантия испарилась', 'Логическое несоответствие', 'Запрет на размышление'],
+                        choices: [
+                            { text: 'Вижу 4 красных флажка! Это обман!', icon: '🚩', wisdom: 50, next: 3 }
+                        ]
+                    },
+                    {
+                        character: 'cricket',
+                        emotion: 'wise',
+                        text: 'Молодец, Буратино! Ты спас свои монеты! Карабас ушёл. Вот тебе памятка с "Золотым Детектором" - запомни эти четыре красных флажка!',
+                        choices: [
+                            { text: 'Спасибо! К следующему уровню!', icon: '📚', wisdom: 10, nextLevel: true }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        text: 'Какой был первый красный флажок от Карабаса?',
+                        options: [
+                            'Нет конкретики, только слова',
+                            'Предложение красивого плана',
+                            'Использование планшета',
+                            'Деловой костюм'
+                        ],
+                        correct: 0,
+                        explanation: 'Когда мошенник не может объяснить механизм - это главный признак обмана.',
+                        reward: 20
+                    },
+                    {
+                        text: 'Почему срочность - это красный флажок?',
+                        options: [
+                            'Потому что это неудобно',
+                            'Мошенники хотят, чтобы ты не думал',
+                            'Потому что это новое предложение'
+                        ],
+                        correct: 1,
+                        explanation: 'Время - твой враг обмана. Даёшь себе время - видишь правду.',
+                        reward: 20
+                    },
+                    {
+                        text: 'Какой вопрос должен был задать Буратино ПЕРВЫМ?',
+                        options: [
+                            'КАК ИМЕННО это работает?',
+                            'Сколько стоит театр?',
+                            'В каком районе театр?'
+                        ],
+                        correct: 0,
+                        explanation: 'Всегда спрашивай МЕХАНИЗМ. Если не объясняют - это обман.',
+                        reward: 20
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: 'Расчет реальности',
+                subtitle: 'Математика инвестиций',
+                gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+                miniGame: 'calculator',
+                dialogues: [
+                    {
+                        character: 'cricket',
+                        emotion: 'teaching',
+                        text: 'Давай посчитаем: 5 монет превращаются в 50 за неделю. Это 900% за неделю или 46,800% в год! Это физически невозможно!',
+                        choices: [
+                            { text: 'Понял математику!', icon: '🧮', wisdom: 40, nextLevel: true }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        text: 'Какой доход реалистичен?',
+                        options: ['500% в год', '100% в год', '8-15% в год', '1000% в год'],
+                        correct: 2,
+                        reward: 25
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: 'Три корзины',
+                subtitle: 'Категоризация инвестиций',
+                gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+                miniGame: 'baskets',
+                dialogues: [
+                    {
+                        character: 'uncle',
+                        emotion: 'wise',
+                        text: 'Научись различать: Безопасно (банки, облигации), Рискованно (стартапы, криптовалюта), Опасно (обещания 500%, пирамиды).',
+                        choices: [
+                            { text: 'Понял категории!', icon: '🧺', wisdom: 30, nextLevel: true }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: 'Телесный барометр',
+                subtitle: 'Доверяйте интуиции',
+                gradient: 'linear-gradient(135deg, #fed6e3 0%, #ffeaa7 100%)',
+                miniGame: 'barometer',
+                dialogues: [
+                    {
+                        character: 'turtle',
+                        emotion: 'wise',
+                        text: 'Доверяй своей интуиции! Если что-то кажется подозрительным - скорее всего, так и есть.',
+                        choices: [
+                            { text: 'Буду слушать себя!', icon: '📊', wisdom: 35, nextLevel: true }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: 'Встреча с мошенником',
+                subtitle: 'Тактики манипуляции',
+                gradient: 'linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%)',
+                dialogues: [
+                    {
+                        character: 'stranger',
+                        emotion: 'sneaky',
+                        text: 'Я знаю твоего отца Карло. У меня специальное предложение только для тебя.',
+                        redFlags: ['Социальная инженерия', 'Ссылка на знакомых'],
+                        choices: [
+                            { text: 'Расскажи подробнее!', icon: '🤝', wisdom: -15, next: 1 },
+                            { text: 'Могу проверить у отца?', icon: '📞', wisdom: 40, next: 1 },
+                            { text: 'Это манипуляция!', icon: '🛡️', wisdom: 50, next: 2 }
+                        ]
+                    },
+                    {
+                        character: 'stranger',
+                        emotion: 'impatient',
+                        text: 'Это предложение только СЕГОДНЯ! Завтра будет слишком поздно!',
+                        redFlags: ['Временное давление', 'Искусственная срочность'],
+                        choices: [
+                            { text: 'Спешу!', icon: '🏃', wisdom: -30, next: 2 },
+                            { text: 'Хорошее не исчезнет', icon: '🧠', wisdom: 60, next: 2 }
+                        ]
+                    },
+                    {
+                        character: 'cricket',
+                        emotion: 'teaching',
+                        text: 'Техники манипуляции:\n- Социальная инженерия\n- Временное давление\n- Искусственная срочность\n- Ложная авторитетность',
+                        choices: [
+                            { text: 'Спасибо за урок!', icon: '🎓', wisdom: 20, nextLevel: true }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 7,
+                title: 'Документы и контракты',
+                subtitle: 'Читаем договоры',
+                gradient: 'linear-gradient(135deg, #fcb69f 0%, #ffecd2 100%)',
+                miniGame: 'contracts',
+                dialogues: [
+                    {
+                        character: 'lawyer',
+                        emotion: 'wise',
+                        text: 'Ловушки в контрактах:\n🚩 Вывод только через 90 дней\n🚩 Комиссия независимо от результата\n🚩 Компания не несет ответственность\n🚩 Средства могут заморозить',
+                        choices: [
+                            { text: 'Буду читать внимательно!', icon: '📋', wisdom: 40, nextLevel: true }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 8,
+                title: 'Финальное испытание',
+                subtitle: 'Все знания вместе',
+                gradient: 'linear-gradient(135deg, #9333ea 0%, #6b21a8 100%)',
+                dialogues: [
+                    {
+                        character: 'fox_alice',
+                        emotion: 'persuasive',
+                        text: 'Последний шанс! Программа "Золотое будущее". 5 монет → 100 за месяц. Мой партнер заработал 10,000!',
+                        redFlags: ['Нереалистичное обещание', 'Ложные свидетельства', 'Давление', 'Все красные флажки!'],
+                        choices: [
+                            { text: 'Вижу все флажки! Это обман!', icon: '🕵️', wisdom: 100, nextPhase: 'posttest' },
+                            { text: 'Не уверен...', icon: '🤔', wisdom: 40, next: 1 },
+                            { text: 'Хорошо, вложу', icon: '💸', wisdom: -50, coins: -5, next: 1 }
+                        ]
+                    },
+                    {
+                        character: 'cricket',
+                        emotion: 'teaching',
+                        text: 'Все флажки:\n🚩 2000% в месяц\n🚩 Непроверяемые свидетельства\n🚩 Давление\n🚩 Нет деталей',
+                        choices: [
+                            { text: 'Теперь вижу!', icon: '💡', wisdom: 70, nextPhase: 'posttest' }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const scenes = [
+            {
+                id: 0,
+                title: "Встреча на рынке",
+                gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                character: "fox_alice",
+                emotion: "suspicious",
+                dialogue: "Привет, Буратино! Я вижу у тебя золотые монетки! Хочешь узнать секрет, как превратить 5 монет в 100?",
+                choices: [
+                    { text: "Да, конечно! Расскажи скорее!", icon: "🤩", wisdom: 0, coins: 0, next: 1 },
+                    { text: "Звучит подозрительно... Как это возможно?", icon: "🤔", wisdom: 20, coins: 0, next: 1 },
+                    { text: "Это похоже на обман. Прощай!", icon: "🛡️", wisdom: 40, coins: 0, next: 4 }
+                ]
+            },
+            {
+                id: 1,
+                title: "Предложение",
+                gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                character: "fox_alice",
+                emotion: "persuasive",
+                dialogue: "Все очень просто! Есть волшебное Поле Чудес. Закопаешь монеты на ночь, скажешь магические слова - и утром вырастет денежное дерево! Многие уже разбогатели! Но нужно действовать быстро!",
+                redFlags: [
+                    "Обещание быстрого обогащения",
+                    "Магические или секретные методы",
+                    "Требование срочности",
+                    "Нет конкретных деталей",
+                    "Непроверяемые утверждения"
+                ],
+                choices: [
+                    { text: "Давай скорее! Где это поле?", icon: "🏃", wisdom: -10, coins: -5, next: 3 },
+                    { text: "А можно увидеть доказательства?", icon: "🔍", wisdom: 30, coins: 0, next: 2 },
+                    { text: "Это классическая схема мошенничества!", icon: "⛔", wisdom: 50, coins: 0, next: 4 }
+                ]
+            },
+            {
+                id: 2,
+                title: "Урок Сверчка",
+                gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+                character: "cricket",
+                emotion: "wise",
+                dialogue: "Отличный вопрос, Буратино! Давай разберем красные флажки мошенничества. Нажми на каждый флажок, чтобы узнать больше!",
+                showRedFlags: true,
+                redFlags: [
+                    "🚩 Обещания быстрого обогащения без усилий",
+                    "🚩 Требование немедленного действия",
+                    "🚩 Отсутствие конкретных деталей и доказательств",
+                    "🚩 'Магические' или 'секретные' методы",
+                    "🚩 Слишком хорошо, чтобы быть правдой"
+                ],
+                choices: [
+                    { text: "Понял! Теперь я знаю, как их распознать!", icon: "💡", wisdom: 40, coins: 0, next: 4 }
+                ]
+            },
+            {
+                id: 3,
+                title: "Потеря и урок",
+                gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+                character: "buratino",
+                emotion: "sad",
+                dialogue: "Я потерял свои монеты... Лиса и Кот исчезли с моими деньгами. Но появился Сверчок и объяснил, что я пропустил все красные флажки мошенничества.",
+                showRedFlags: true,
+                redFlags: [
+                    "🚩 Обещания быстрого обогащения",
+                    "🚩 Магические методы без объяснений",
+                    "🚩 Давление действовать немедленно",
+                    "🚩 Отсутствие проверяемых фактов"
+                ],
+                choices: [
+                    { text: "Учиться на ошибках 📚", icon: "📚", wisdom: 60, coins: 0, next: 4 }
+                ]
+            },
+            {
+                id: 4,
+                title: "Заключение",
+                gradient: "linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%)",
+                isEnding: true
+            }
+        ];
+
+        const tips = [
+            "🚩 Будьте осторожны с обещаниями быстрого обогащения",
+            "🔍 Всегда проверяйте информацию из нескольких источников",
+            "⏰ Не принимайте финансовые решения под давлением",
+            "💬 Обсуждайте важные решения с доверенными людьми",
+            "📖 Изучайте основы финансовой грамотности"
+        ];
+
+        // Particle system with image support
+        function createParticle(x, y, emoji, useImage = false) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            if (useImage && emoji === '✨') {
+                const img = document.createElement('img');
+                img.src = itemImages.sparkles;
+                img.style.width = '32px';
+                img.style.height = '32px';
+                img.onerror = () => { particle.textContent = '✨'; };
+                particle.appendChild(img);
+            } else {
+                particle.textContent = emoji;
+            }
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.textContent = emoji;
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.fontSize = '24px';
+            document.body.appendChild(particle);
+            
+            setTimeout(() => particle.remove(), 2000);
+        }
+
+        function createParticleBurst(emoji, count = 10, useImage = false) {
+            const rect = document.getElementById('coinStat').getBoundingClientRect();
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const x = rect.left + Math.random() * 100 - 50;
+                    const y = rect.top + Math.random() * 100 - 50;
+                    createParticle(x, y, emoji, useImage);
+                }, i * 50);
+            }
+        }
+
+        // Typewriter effect
+        function typeWriter(element, text, speed = 30) {
+            element.textContent = '';
+            let i = 0;
+            
+            return new Promise((resolve) => {
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        resolve();
+                    }
+                }
+                type();
+            });
+        }
+
+        // Update stats
+        function updateStats(animate = true) {
+            const coinCount = document.getElementById('coinCount');
+            const wisdomCount = document.getElementById('wisdomCount');
+            const wisdomFill = document.getElementById('wisdomFill');
+            
+            coinCount.textContent = gameState.coins;
+            wisdomCount.textContent = Math.min(100, gameState.wisdom);
+            wisdomFill.style.width = Math.min(100, gameState.wisdom) + '%';
+            
+            if (animate && gameState.wisdom > 0) {
+                createParticleBurst('✨', 5, true);
+            }
+        }
+
+        // Change background
+        function changeBackground(gradient) {
+            const bg = document.querySelector('.gradient-bg');
+            bg.style.background = gradient;
+        }
+
+        // Show scene
+        async function showScene(sceneId) {
+            const scene = scenes[sceneId];
+            gameState.currentScene = sceneId;
+            
+            if (scene.isEnding) {
+                showEnding();
+                return;
+            }
+            
+            // Change background
+            changeBackground(scene.gradient);
+            
+            // Update character
+            const char = characters[scene.character];
+            const emoji = scene.emotion ? char.emotions[scene.emotion] : char.emoji;
+            document.getElementById('characterEmoji').textContent = emoji;
+            document.getElementById('characterName').textContent = char.name;
+            
+            // Show dialogue with typewriter effect
+            const dialogueText = document.getElementById('dialogueText');
+            await typeWriter(dialogueText, scene.dialogue, 30);
+            
+            // Show red flags if needed
+            const redFlagsDiv = document.getElementById('redFlags');
+            if (scene.showRedFlags && scene.redFlags) {
+                redFlagsDiv.classList.remove('hidden');
+                const redFlagsList = document.getElementById('redFlagsList');
+                redFlagsList.innerHTML = '';
+                
+                scene.redFlags.forEach((flag, index) => {
+                    setTimeout(() => {
+                        const item = document.createElement('div');
+                        item.className = 'red-flag-item';
+                        item.textContent = flag;
+                        item.onclick = () => {
+                            item.classList.add('identified');
+                            createParticleBurst('💡', 3);
+                        };
+                        redFlagsList.appendChild(item);
+                    }, index * 200);
+                });
+            } else {
+                redFlagsDiv.classList.add('hidden');
+            }
+            
+            // Show choices
+            const choicesDiv = document.getElementById('choices');
+            choicesDiv.innerHTML = '';
+            
+            scene.choices.forEach((choice, index) => {
+                setTimeout(() => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.innerHTML = `
+                        <span class="choice-icon">${choice.icon}</span>
+                        <span>${choice.text}</span>
+                    `;
+                    btn.onclick = () => handleChoice(choice);
+                    choicesDiv.appendChild(btn);
+                }, index * 150);
+            });
+        }
+
+        // Handle choice
+        function handleChoice(choice) {
+            // Update game state
+            gameState.wisdom = Math.max(0, Math.min(100, gameState.wisdom + choice.wisdom));
+            gameState.coins = Math.max(0, gameState.coins + choice.coins);
+            gameState.history.push(choice.text);
+            
+            // Visual feedback
+            if (choice.coins !== 0) {
+                createParticleBurst(choice.coins > 0 ? '🪙' : '💔', 8);
+            }
+            if (choice.wisdom > 0) {
+                createParticleBurst('✨', 6);
+            }
+            
+            // Update UI
+            updateStats(true);
+            
+            // Disable all buttons
+            document.querySelectorAll('.choice-btn').forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+            });
+            
+            // Move to next scene
+            setTimeout(() => {
+                showScene(choice.next);
+            }, 1000);
+        }
+
+        // Show ending
+        function showEnding() {
+            hideEduSidebar();
+            triggerSparkleEffect();
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            const preTestPercentage = Math.round((gameState.preTestScore / preTestQuestions.length) * 100);
+            const postTestPercentage = Math.round((gameState.postTestScore / postTestQuestions.length) * 100);
+            const improvement = postTestPercentage - preTestPercentage;
+            
+            let wisdomLevel = "Начинающий детектив";
+            let achievement = "Учимся на ошибках ⭐";
+            let emoji = "📚";
+            
+            if (gameState.wisdom >= 90 && gameState.coins >= 5) {
+                wisdomLevel = "Мастер финансовой грамотности";
+                achievement = "Гений финансов 👑";
+                emoji = "🏆";
+            } else if (gameState.wisdom >= 80) {
+                wisdomLevel = "Эксперт по мошенничеству";
+                achievement = "Уничтожитель скамов ⚔️";
+                emoji = "🎯";
+            } else if (gameState.wisdom >= 60) {
+                wisdomLevel = "Знающий инвестор";
+                achievement = "Умный детектив 🕵️";
+                emoji = "💡";
+            } else if (gameState.wisdom >= 40) {
+                wisdomLevel = "Внимательный ученик";
+                achievement = "На правильном пути ⭐⭐";
+                emoji = "📖";
+            }
+            
+            let message = "";
+            if (gameState.coins >= 5 && gameState.wisdom >= 80) {
+                message = "🎉 Невероятно! Ты сохранил все монеты И стал мастером финансовой грамотности!";
+            } else if (gameState.coins > 3 && gameState.wisdom >= 60) {
+                message = "👍 Отличная работа! Ты научился распознавать мошенников и защитил свои деньги!";
+            } else if (gameState.wisdom >= 50) {
+                message = "📚 Возможно, ты потерял монеты, но получил бесценный опыт. Теперь ты знаешь все красные флажки!";
+            } else {
+                message = "💪 Каждая ошибка - это урок! Попробуй еще раз и применяй свои новые знания!";
+            }
+            
+            container.innerHTML = `
+                <div class="glass-card ending-screen">
+                    <div style="font-size: 80px; margin-bottom: 20px; animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);">${emoji}</div>
+                    <div class="ending-title">${message}</div>
+                    
+                    <div class="ending-stats">
+                        <div class="ending-stat">
+                            <div class="ending-stat-value">🪙 ${gameState.coins}</div>
+                            <div class="ending-stat-label">Монет осталось</div>
+                        </div>
+                        <div class="ending-stat">
+                            <div class="ending-stat-value">💡 ${gameState.wisdom}%</div>
+                            <div class="ending-stat-label">Мудрость</div>
+                        </div>
+                        <div class="ending-stat">
+                            <div class="ending-stat-value">${gameState.completedLevels.length}/8</div>
+                            <div class="ending-stat-label">Уровни пройдены</div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-badge">${achievement}</div>
+                    <div style="font-size: 20px; margin: 16px 0; opacity: 0.9;">${wisdomLevel}</div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 24px; border-radius: 12px; margin: 32px 0;">
+                        <h3 style="font-size: 24px; margin-bottom: 16px;">📊 Прогресс знаний</h3>
+                        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px;">
+                            <div>
+                                <div style="font-size: 18px; opacity: 0.8;">Тест до обучения</div>
+                                <div style="font-size: 32px; font-weight: bold; margin-top: 8px;">${preTestPercentage}%</div>
+                            </div>
+                            <div style="font-size: 32px; align-self: center;">→</div>
+                            <div>
+                                <div style="font-size: 18px; opacity: 0.8;">Финальный тест</div>
+                                <div style="font-size: 32px; font-weight: bold; margin-top: 8px;">${postTestPercentage}%</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 20px; margin-top: 16px; color: ${improvement >= 0 ? '#10B981' : '#F59E0B'};">
+                            ${improvement >= 0 ? '📈' : '📊'} Улучшение: ${improvement >= 0 ? '+' : ''}${improvement}%
+                        </div>
+                    </div>
+                    
+                    <div class="tips-section">
+                        <h3 style="margin-bottom: 20px; font-size: 24px;">💡 Главные уроки финансовой грамотности:</h3>
+                        ${tips.map(tip => `<div class="tip-item">${tip}</div>`).join('')}
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="restartGame()" style="margin-top: 32px;">
+                        🔄 Сыграть еще раз
+                    </button>
+                </div>
+            `;
+            
+            // Celebration particles
+            setTimeout(() => {
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const x = Math.random() * window.innerWidth;
+                        const y = Math.random() * window.innerHeight;
+                        createParticle(x, y, ['🎉', '⭐', '✨', '🏆', '💡', '🪙'][Math.floor(Math.random() * 6)]);
+                    }, i * 80);
+                }
+            }, 500);
+        }
+
+        // Initialize counter from memory
+        function initializeCounter() {
+            // Using in-memory variable instead of localStorage
+            const counter = gameState.globalCitizensCount;
+            document.getElementById('citizenCounter').textContent = counter.toLocaleString('ru-RU');
+        }
+
+        // Start game - go to instructions
+        function startGame() {
+            document.getElementById('landing').style.display = 'none';
+            gameState.phase = 'instructions';
+            showInstructions();
+        }
+
+        // Show instructions screen
+        function showInstructions() {
+            showBackgroundImage('door');
+            const game = document.getElementById('game');
+            game.style.display = 'block';
+            const container = game.querySelector('.container');
+            
+            container.innerHTML = `
+                <div class="glass-card" style="max-width: 900px; margin: 0 auto;">
+                    <h2 style="font-size: 36px; margin-bottom: 24px; text-align: center;">📚 Добро пожаловать!</h2>
+                    
+                    <div style="font-size: 18px; line-height: 1.8; margin-bottom: 32px;">
+                        <p style="margin-bottom: 16px;">Привет! Ты - Буратино, и у тебя есть <strong>5 золотых монет</strong>, оставленных бабушкой. Но многие мошенники захотят их забрать!</p>
+                        <p style="margin-bottom: 16px;">В этой игре ты научишься <strong>5 психологическим техникам</strong> защиты от финансового мошенничества.</p>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 24px; border-radius: 12px; margin-bottom: 32px;">
+                        <h3 style="font-size: 24px; margin-bottom: 20px; text-align: center;">🛡️ Пять техник "Золотого Детектора":</h3>
+                        <div style="display: grid; gap: 16px;">
+                            <div style="padding: 16px; background: rgba(16, 185, 129, 0.2); border-radius: 8px; border-left: 4px solid var(--color-success);">
+                                <strong>1️⃣ Телесный барометр</strong> - слушай свои физические ощущения. Холод в животе = опасность!
+                            </div>
+                            <div style="padding: 16px; background: rgba(16, 185, 129, 0.2); border-radius: 8px; border-left: 4px solid var(--color-success);">
+                                <strong>2️⃣ Контрольные вопросы</strong> - всегда спрашивай "КАК ИМЕННО это работает?"
+                            </div>
+                            <div style="padding: 16px; background: rgba(16, 185, 129, 0.2); border-radius: 8px; border-left: 4px solid var(--color-success);">
+                                <strong>3️⃣ Правило 72 часов</strong> - не принимай решения под давлением срочности
+                            </div>
+                            <div style="padding: 16px; background: rgba(16, 185, 129, 0.2); border-radius: 8px; border-left: 4px solid var(--color-success);">
+                                <strong>4️⃣ Микроскоп для мелкого шрифта</strong> - читай все условия в договорах
+                            </div>
+                            <div style="padding: 16px; background: rgba(16, 185, 129, 0.2); border-radius: 8px; border-left: 4px solid var(--color-success);">
+                                <strong>5️⃣ Правило трёх корзин</strong> - распределяй деньги: 50% безопасность, 30% развитие, 20% радость
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(147, 51, 234, 0.2); padding: 20px; border-radius: 12px; margin-bottom: 32px;">
+                        <h3 style="font-size: 20px; margin-bottom: 12px;">🎮 Как играть:</h3>
+                        <ul style="font-size: 16px; line-height: 1.8; padding-left: 24px;">
+                            <li>Проходи 6 глав приключения</li>
+                            <li>Делай выбор в диалогах с персонажами</li>
+                            <li>Отвечай на вопросы и находи красные флажки мошенничества</li>
+                            <li>Сохрани свои монеты и набери мудрость!</li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <button class="btn btn-primary" onclick="showLevelMap()" style="font-size: 22px; padding: 20px 48px;">📍 К карте уровней!</button>
+                        <div style="margin-top: 16px; font-size: 14px; opacity: 0.7;">
+                            <label style="cursor: pointer;"><input type="checkbox" id="skipInstructions" style="margin-right: 8px;">Пропустить в следующий раз</label>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show educational sidebar
+        function showEduSidebar() {
+            document.getElementById('eduSidebar').style.display = 'flex';
+        }
+        
+        function hideEduSidebar() {
+            document.getElementById('eduSidebar').style.display = 'none';
+        }
+        
+        // Show pre-test
+        function showPreTest() {
+            const game = document.getElementById('game');
+            game.style.display = 'block';
+            const container = game.querySelector('.container');
+            
+            // Show intro with Cricket
+            container.innerHTML = `
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: 80px; margin-bottom: 20px;">🦗</div>
+                    <h2 style="font-size: 32px; margin-bottom: 20px;">ВХОДНОЙ ТЕСТ</h2>
+                    <p style="font-size: 20px; line-height: 1.6; margin-bottom: 24px;">Сверчок Джимини хочет узнать, как много ты знаешь о финансах и мошенничестве. Отвечай честно!</p>
+                    <button class="btn btn-primary" onclick="startPreTestQuestions()">Начать тест</button>
+                </div>
+            `;
+        }
+        
+        function startPreTestQuestions() {
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            let currentQuestion = 0;
+            let correctAnswers = 0;
+            
+            function showQuestion() {
+                const q = preTestQuestions[currentQuestion];
+                
+                container.innerHTML = `
+                    <div class="glass-card">
+                        <h2 style="font-size: 28px; margin-bottom: 20px;">Предварительный тест</h2>
+                        <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Вопрос ${currentQuestion + 1} из ${preTestQuestions.length}</p>
+                        <h3 style="font-size: 22px; margin-bottom: 24px;">${q.text}</h3>
+                        <div class="choices" id="testChoices"></div>
+                    </div>
+                `;
+                
+                const choicesDiv = document.getElementById('testChoices');
+                q.options.forEach((option, index) => {
+                    setTimeout(() => {
+                        const btn = document.createElement('button');
+                        btn.className = 'choice-btn';
+                        btn.innerHTML = `<span class="choice-icon">${String.fromCharCode(65 + index)}</span><span>${option}</span>`;
+                        btn.onclick = () => handleTestAnswer(index, q.correct, q.explanation);
+                        choicesDiv.appendChild(btn);
+                    }, index * 100);
+                });
+            }
+            
+            function handleTestAnswer(selected, correct, explanation) {
+                const isCorrect = selected === correct;
+                if (isCorrect) {
+                    correctAnswers++;
+                    gameState.wisdom += 10;
+                    createParticleBurst('✨', 5);
+                }
+                
+                updateStats(true);
+                
+                container.innerHTML = `
+                    <div class="glass-card">
+                        <h2 style="font-size: 32px; margin-bottom: 20px;">${isCorrect ? '✅ Правильно!' : '❌ Неправильно'}</h2>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 24px;">${explanation}</p>
+                        <button class="btn btn-primary" onclick="continuePreTest()">Далее</button>
+                    </div>
+                `;
+            }
+            
+            window.continuePreTest = function() {
+                currentQuestion++;
+                if (currentQuestion < preTestQuestions.length) {
+                    showQuestion();
+                } else {
+                    gameState.preTestScore = correctAnswers;
+                    showPreTestResults();
+                }
+            };
+            
+            function showPreTestResults() {
+                const percentage = Math.round((correctAnswers / preTestQuestions.length) * 100);
+                let level = 'Финансовый новичок';
+                if (correctAnswers >= 5) {
+                    level = 'Интуитивный аналитик';
+                    gameState.wisdom += 10;
+                } else if (correctAnswers >= 3) {
+                    level = 'Начинающий исследователь';
+                }
+                container.innerHTML = `
+                    <div class="glass-card" style="text-align: center;">
+                        <h2 style="font-size: 32px; margin-bottom: 20px;">Результаты входного теста</h2>
+                        <div style="font-size: 64px; margin: 24px 0;">📊</div>
+                        <p style="font-size: 24px; margin-bottom: 16px;">Правильных ответов: ${correctAnswers} из ${preTestQuestions.length}</p>
+                        <p style="font-size: 20px; margin-bottom: 16px; opacity: 0.9;">Точность: ${percentage}%</p>
+                        <div style="font-size: 24px; padding: 16px; background: rgba(147, 51, 234, 0.3); border-radius: 12px; margin: 24px 0;">🎯 ${level}</div>
+                        <button class="btn btn-primary" onclick="startStoryLevels()">🎮 Начать приключение!</button>
+                    </div>
+                `;
+                updateStats(true);
+            }
+            
+            showQuestion();
+        }
+        
+        window.startPostTestQuestions = startPostTestQuestions;
+        
+        window.startPreTestQuestions = startPreTestQuestions;
+
+        // Start story levels
+        function startStoryLevels() {
+            gameState.phase = 'story';
+            gameState.currentLevel = 0;
+            gameState.currentDialogue = 0;
+            showEduSidebar();
+            showLevel(0);
+        }
+
+        // Show level
+        function showLevel(levelIndex) {
+            if (levelIndex >= 8) {
+                // All chapters complete, go to post-test
+                gameState.phase = 'posttest';
+                showPostTest();
+                return;
+            }
+            
+            // Show appropriate background
+            if (levelIndex === 0 || levelIndex === 1) {
+                showBackgroundImage('door');
+            } else if (levelIndex === 3 || levelIndex === 4) {
+                showBackgroundImage('bank');
+            }
+            
+            const level = levels[levelIndex];
+            gameState.currentLevel = levelIndex;
+            gameState.currentDialogue = 0;
+            
+            changeBackground(level.gradient);
+            
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            // Show level intro
+            container.innerHTML = `
+                <div class="glass-card" style="text-align: center;">
+                    <h2 style="font-size: 36px; margin-bottom: 12px;">Уровень ${level.id}</h2>
+                    <h3 style="font-size: 28px; margin-bottom: 16px; opacity: 0.9;">${level.title}</h3>
+                    <p style="font-size: 20px; margin-bottom: 32px; opacity: 0.8;">${level.subtitle}</p>
+                    <button class="btn btn-primary" onclick="startDialogue()">Начать уровень</button>
+                </div>
+            `;
+        }
+
+        // Start dialogue
+        window.startDialogue = function() {
+            showDialogue();
+        };
+
+        // Show dialogue
+        function showDialogue() {
+            const level = levels[gameState.currentLevel];
+            const dialogue = level.dialogues[gameState.currentDialogue];
+            
+            const game = document.getElementById('game');
+            game.innerHTML = `
+                <div class="container">
+                    <div class="character-display">
+                        ${charImage ? `<img src="${charImage}" alt="${char.name}" class="character-portrait" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">` : ''}
+                        <div class="character-emoji" id="characterEmoji" style="${charImage ? 'display:none;' : ''}"></div>
+                        <div class="character-name" id="characterName"></div>
+                    </div>
+                    <div class="glass-card dialogue-box">
+                        <div class="dialogue-text" id="dialogueText"></div>
+                        <div class="red-flags hidden" id="redFlags">
+                            <div class="red-flag-title">🚩 Красные флажки:</div>
+                            <div id="redFlagsList"></div>
+                        </div>
+                    </div>
+                    <div class="choices" id="choices"></div>
+                </div>
+            `;
+            
+            const char = characters[dialogue.character];
+            const charImage = char.image || null;
+            document.getElementById('characterEmoji').textContent = char.emoji;
+            document.getElementById('characterName').textContent = char.name;
+            
+            const dialogueText = document.getElementById('dialogueText');
+            typeWriter(dialogueText, dialogue.text, 30).then(() => {
+                if (dialogue.redFlags) {
+                    const redFlagsDiv = document.getElementById('redFlags');
+                    redFlagsDiv.classList.remove('hidden');
+                    const list = document.getElementById('redFlagsList');
+                    dialogue.redFlags.forEach((flag, i) => {
+                        setTimeout(() => {
+                            const item = document.createElement('div');
+                            item.className = 'red-flag-item';
+                            item.textContent = '🚩 ' + flag;
+                            list.appendChild(item);
+                        }, i * 200);
+                    });
+                }
+            });
+            
+            const choicesDiv = document.getElementById('choices');
+            dialogue.choices.forEach((choice, i) => {
+                setTimeout(() => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.innerHTML = `<span class="choice-icon">${choice.icon}</span><span>${choice.text}</span>`;
+                    btn.onclick = () => handleDialogueChoice(choice);
+                    choicesDiv.appendChild(btn);
+                }, i * 150);
+            });
+        }
+
+        // Handle dialogue choice
+        function handleDialogueChoice(choice) {
+            gameState.wisdom = Math.max(0, Math.min(100, gameState.wisdom + (choice.wisdom || 0)));
+            if (choice.coins) {
+                gameState.coins = Math.max(0, gameState.coins + choice.coins);
+            }
+            
+            if (choice.wisdom > 0) createParticleBurst('✨', 5);
+            if (choice.coins && choice.coins < 0) createParticleBurst('💔', 5);
+            
+            updateStats(true);
+            
+            document.querySelectorAll('.choice-btn').forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+            });
+            
+            setTimeout(() => {
+                if (choice.nextLevel) {
+                    // Check which test to show based on level
+                    if (gameState.currentLevel === 1 && gameState.currentDialogue === level.dialogues.length - 1) {
+                        showChapter1Test();
+                    } else if (gameState.currentLevel === 2) {
+                        showScenarioTest();
+                    } else if (gameState.currentLevel === 4) {
+                        showComplexTest();
+                    } else {
+                        showLevelQuiz();
+                    }
+                } else if (choice.nextPhase === 'posttest') {
+                    gameState.phase = 'posttest';
+                    setTimeout(() => showPostTest(), 1000);
+                } else if (choice.next !== undefined) {
+                    gameState.currentDialogue = choice.next;
+                    showDialogue();
+                } else {
+                    gameState.currentDialogue++;
+                    const level = levels[gameState.currentLevel];
+                    if (gameState.currentDialogue < level.dialogues.length) {
+                        showDialogue();
+                    } else {
+                        showLevelQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        // Show scenario test
+        function showScenarioTest() {
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            let currentQ = 0;
+            let correctAnswers = 0;
+            
+            function showScenario() {
+                const sc = scenarioTest[currentQ];
+                container.innerHTML = `
+                    <div class="glass-card">
+                        <h2 style="font-size: 28px; margin-bottom: 20px;">УРОВЕНЬ 2: Определи ловушку!</h2>
+                        <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Ситуация ${currentQ + 1} из ${scenarioTest.length}</p>
+                        <p style="font-size: 18px; line-height: 1.6; margin-bottom: 24px;">${sc.text}</p>
+                        <div class="choices" id="scenarioChoices"></div>
+                    </div>
+                `;
+                
+                const choicesDiv = document.getElementById('scenarioChoices');
+                const options = ['🚩 Финансовая пирамида/Обман', '✅ Легальное предложение'];
+                options.forEach((option, index) => {
+                    setTimeout(() => {
+                        const btn = document.createElement('button');
+                        btn.className = 'choice-btn';
+                        btn.innerHTML = `<span class="choice-icon">${index === 0 ? '🚩' : '✅'}</span><span>${option}</span>`;
+                        btn.onclick = () => {
+                            const isCorrect = index === sc.correct;
+                            if (isCorrect) {
+                                correctAnswers++;
+                                gameState.wisdom += sc.reward;
+                                createParticleBurst('✨', 5);
+                            }
+                            updateStats(true);
+                            continueScenario();
+                        };
+                        choicesDiv.appendChild(btn);
+                    }, index * 100);
+                });
+            }
+            
+            function continueScenario() {
+                currentQ++;
+                if (currentQ < scenarioTest.length) {
+                    setTimeout(() => showScenario(), 500);
+                } else {
+                    showScenarioResults();
+                }
+            }
+            
+            function showScenarioResults() {
+                const percentage = Math.round((correctAnswers / scenarioTest.length) * 100);
+                let wisdom = 0;
+                let level = '';
+                if (correctAnswers >= 8) {
+                    wisdom = 60;
+                    level = '🏆 Эксперт Детектора';
+                } else if (correctAnswers >= 6) {
+                    wisdom = 40;
+                    level = '🎯 Опытный детектив';
+                } else {
+                    wisdom = 20;
+                    level = '📚 Ученик';
+                }
+                gameState.wisdom += wisdom;
+                updateStats(true);
+                
+                container.innerHTML = `
+                    <div class="glass-card" style="text-align: center;">
+                        <h2 style="font-size: 32px; margin-bottom: 20px;">Результаты теста</h2>
+                        <div style="font-size: 64px; margin: 24px 0;">📊</div>
+                        <p style="font-size: 24px; margin-bottom: 16px;">Правильных ответов: ${correctAnswers} из ${scenarioTest.length}</p>
+                        <p style="font-size: 20px; margin-bottom: 16px;">${percentage}%</p>
+                        <div style="font-size: 24px; padding: 16px; background: rgba(147, 51, 234, 0.3); border-radius: 12px; margin: 24px 0;">${level}</div>
+                        <button class="btn btn-primary" onclick="nextLevel()">Продолжить</button>
+                    </div>
+                `;
+            }
+            
+            showScenario();
+        }
+        
+        // Show complex test
+        function showComplexTest() {
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            let currentQ = 0;
+            let correctAnswers = 0;
+            
+            function showComplexQuestion() {
+                const q = complexTest[currentQ];
+                container.innerHTML = `
+                    <div class="glass-card">
+                        <h2 style="font-size: 28px; margin-bottom: 20px;">УРОВЕНЬ 3: Сложные ситуации</h2>
+                        <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Вопрос ${currentQ + 1} из ${complexTest.length}</p>
+                        <h3 style="font-size: 22px; margin-bottom: 24px;">${q.text}</h3>
+                        <div class="choices" id="complexChoices"></div>
+                    </div>
+                `;
+                
+                const choicesDiv = document.getElementById('complexChoices');
+                q.options.forEach((option, index) => {
+                    setTimeout(() => {
+                        const btn = document.createElement('button');
+                        btn.className = 'choice-btn';
+                        btn.innerHTML = `<span class="choice-icon">${String.fromCharCode(65 + index)}</span><span>${option}</span>`;
+                        btn.onclick = () => {
+                            const isCorrect = index === q.correct;
+                            if (isCorrect) {
+                                correctAnswers++;
+                                gameState.wisdom += q.reward;
+                                createParticleBurst('✨', 5);
+                            }
+                            updateStats(true);
+                            continueComplex();
+                        };
+                        choicesDiv.appendChild(btn);
+                    }, index * 100);
+                });
+            }
+            
+            function continueComplex() {
+                currentQ++;
+                if (currentQ < complexTest.length) {
+                    setTimeout(() => showComplexQuestion(), 500);
+                } else {
+                    showComplexResults();
+                }
+            }
+            
+            function showComplexResults() {
+                if (correctAnswers === 5) {
+                    gameState.wisdom += 100;
+                    gameState.achievements.push('🏆 Эксперт Детектора');
+                }
+                updateStats(true);
+                
+                container.innerHTML = `
+                    <div class="glass-card" style="text-align: center;">
+                        <h2 style="font-size: 32px; margin-bottom: 20px;">Превосходно!</h2>
+                        <div style="font-size: 64px; margin: 24px 0;">${correctAnswers === 5 ? '🏆' : '🎯'}</div>
+                        <p style="font-size: 24px; margin-bottom: 16px;">Правильных: ${correctAnswers}/5</p>
+                        ${correctAnswers === 5 ? '<div style="font-size: 20px; padding: 16px; background: rgba(16, 185, 129, 0.3); border-radius: 12px; margin: 24px 0;">🏆 Достижение: Эксперт Детектора!</div>' : ''}
+                        <button class="btn btn-primary" onclick="nextLevel()">Продолжить</button>
+                    </div>
+                `;
+                createParticleBurst('🎉', 20);
+            }
+            
+            showComplexQuestion();
+        }
+        
+        // Show level quiz
+        function showLevelQuiz() {
+            const level = levels[gameState.currentLevel];
+            if (!level.quiz || level.quiz.length === 0) {
+                completeLevelAndNext();
+                return;
+            }
+            
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            let currentQ = 0;
+            
+            function showQuizQuestion() {
+                const q = level.quiz[currentQ];
+                container.innerHTML = `
+                    <div class="glass-card">
+                        <h2 style="font-size: 28px; margin-bottom: 20px;">Проверка знаний</h2>
+                        <h3 style="font-size: 22px; margin-bottom: 24px;">${q.text}</h3>
+                        <div class="choices" id="quizChoices"></div>
+                    </div>
+                `;
+                
+                const choicesDiv = document.getElementById('quizChoices');
+                q.options.forEach((option, index) => {
+                    setTimeout(() => {
+                        const btn = document.createElement('button');
+                        btn.className = 'choice-btn';
+                        btn.innerHTML = `<span class="choice-icon">${String.fromCharCode(65 + index)}</span><span>${option}</span>`;
+                        btn.onclick = () => {
+                            const isCorrect = index === q.correct;
+                            if (isCorrect) {
+                                gameState.wisdom += q.reward || 15;
+                                createParticleBurst('✨', 5);
+                            }
+                            updateStats(true);
+                            
+                            container.innerHTML = `
+                                <div class="glass-card" style="text-align: center;">
+                                    <h2 style="font-size: 32px; margin-bottom: 20px;">${isCorrect ? '✅ Правильно!' : '❌ Попробуй еще раз'}</h2>
+                                    <button class="btn btn-primary" onclick="nextQuizQuestion()">Далее</button>
+                                </div>
+                            `;
+                        };
+                        choicesDiv.appendChild(btn);
+                    }, index * 100);
+                });
+            }
+            
+            window.nextQuizQuestion = function() {
+                currentQ++;
+                if (currentQ < level.quiz.length) {
+                    showQuizQuestion();
+                } else {
+                    completeLevelAndNext();
+                }
+            };
+            
+            showQuizQuestion();
+        }
+
+        // Complete level and move to next
+        function completeLevelAndNext() {
+            if (!gameState.completedLevels.includes(gameState.currentLevel)) {
+                gameState.completedLevels.push(gameState.currentLevel);
+            }
+            
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            container.innerHTML = `
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+                    <h2 style="font-size: 32px; margin-bottom: 16px;">Глава ${gameState.currentLevel + 1} пройдена!</h2>
+                    <p style="font-size: 20px; margin-bottom: 32px;">Мудрость: ${gameState.wisdom}%</p>
+                    <button class="btn btn-primary" onclick="nextLevel()">Продолжить</button>
+                </div>
+            `;
+            
+            createParticleBurst('🎉', 20);
+        }
+
+        // Show Chapter 1 Test
+        function showChapter1Test() {
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            let currentQ = 0;
+            let correctAnswers = 0;
+            
+            function showQuestion() {
+                const q = chapter1Test[currentQ];
+                container.innerHTML = `
+                    <div class="glass-card">
+                        <h2 style="font-size: 28px; margin-bottom: 20px;">УРОВЕНЬ 1: Базовые красные флажки</h2>
+                        <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Вопрос ${currentQ + 1} из ${chapter1Test.length}</p>
+                        <h3 style="font-size: 22px; margin-bottom: 24px;">${q.text}</h3>
+                        <div class="choices" id="testChoices"></div>
+                    </div>
+                `;
+                
+                const choicesDiv = document.getElementById('testChoices');
+                q.options.forEach((option, index) => {
+                    setTimeout(() => {
+                        const btn = document.createElement('button');
+                        btn.className = 'choice-btn';
+                        btn.innerHTML = `<span class="choice-icon">${String.fromCharCode(65 + index)}</span><span>${option}</span>`;
+                        btn.onclick = () => {
+                            const isCorrect = index === q.correct;
+                            if (isCorrect) {
+                                correctAnswers++;
+                                gameState.wisdom += q.reward;
+                                createParticleBurst('✨', 5);
+                            }
+                            updateStats(true);
+                            continueTest();
+                        };
+                        choicesDiv.appendChild(btn);
+                    }, index * 100);
+                });
+            }
+            
+            function continueTest() {
+                currentQ++;
+                if (currentQ < chapter1Test.length) {
+                    setTimeout(() => showQuestion(), 500);
+                } else {
+                    completeLevelAndNext();
+                }
+            }
+            
+            showQuestion();
+        }
+        
+        window.nextLevel = function() {
+            if (gameState.completedLevels.length >= 8) {
+                // All chapters complete, show post-test then survey
+                gameState.phase = 'posttest';
+                showPostTest();
+            } else {
+                // Show level map
+                showLevelMap();
+            }
+        };
+
+        // Show post-test
+        function showPostTest() {
+            hideEduSidebar();
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            // Show intro
+            container.innerHTML = `
+                <div class="glass-card" style="text-align: center;">
+                    <img src="character_buratino_happy.jpg" alt="Buratino" style="width: 150px; height: auto; border-radius: 12px; margin-bottom: 20px;" onerror="this.style.display='none';">
+                    <h2 style="font-size: 32px; margin-bottom: 20px;">ВЫХОДНОЙ ТЕСТ</h2>
+                    <p style="font-size: 20px; line-height: 1.6; margin-bottom: 24px;">Финальный тест! Покажи, чему ты научился!</p>
+                    <button class="btn btn-primary" onclick="startPostTestQuestions()">Начать тест</button>
+                </div>
+            `;
+        }
+        
+        function startPostTestQuestions() {
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            let currentQuestion = 0;
+            let correctAnswers = 0;
+            
+            function showQuestion() {
+                const q = postTestQuestions[currentQuestion];
+                
+                container.innerHTML = `
+                    <div class="glass-card">
+                        <h2 style="font-size: 28px; margin-bottom: 20px;">Финальный тест</h2>
+                        <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Вопрос ${currentQuestion + 1} из ${postTestQuestions.length}</p>
+                        <h3 style="font-size: 22px; margin-bottom: 24px;">${q.text}</h3>
+                        <div class="choices" id="testChoices"></div>
+                    </div>
+                `;
+                
+                const choicesDiv = document.getElementById('testChoices');
+                q.options.forEach((option, index) => {
+                    setTimeout(() => {
+                        const btn = document.createElement('button');
+                        btn.className = 'choice-btn';
+                        btn.innerHTML = `<span class="choice-icon">${String.fromCharCode(65 + index)}</span><span>${option}</span>`;
+                        btn.onclick = () => {
+                            const isCorrect = index === q.correct;
+                            if (isCorrect) {
+                                correctAnswers++;
+                                gameState.wisdom += 10;
+                                createParticleBurst('✨', 3);
+                            }
+                            updateStats(true);
+                            continuePostTest();
+                        };
+                        choicesDiv.appendChild(btn);
+                    }, index * 100);
+                });
+            }
+            
+            function continuePostTest() {
+                currentQuestion++;
+                if (currentQuestion < postTestQuestions.length) {
+                    setTimeout(() => showQuestion(), 500);
+                } else {
+                    gameState.postTestScore = correctAnswers;
+                    showFinalResults();
+                }
+            }
+            
+            function showFinalResults() {
+                gameState.postTestScore = correctAnswers;
+                gameState.phase = 'survey';
+                showSurvey();
+            }
+            
+            showQuestion();
+        }
+
+        // Show level map
+        function showLevelMap() {
+            document.getElementById('statsBar').classList.remove('hidden');
+            const game = document.getElementById('game');
+            game.style.display = 'block';
+            const container = game.querySelector('.container');
+            
+            const chapters = [
+                { num: 1, title: 'Пять золотых монет', icon: '🪙', color: '#667eea' },
+                { num: 2, title: 'Карабас и инвестиции', icon: '🎭', color: '#f093fb' },
+                { num: 3, title: 'Лиса и Кот 2.0', icon: '🦊', color: '#ffecd2' },
+                { num: 4, title: 'Артемон и займы', icon: '🐕', color: '#a8edea' },
+                { num: 5, title: 'Мальвина и инвестиции', icon: '👧', color: '#fed6e3' },
+                { num: 6, title: 'Финальное испытание', icon: '🏆', color: '#9333ea' }
+            ];
+            
+            let chaptersHtml = '';
+            chapters.forEach((ch, i) => {
+                const isCompleted = gameState.completedLevels.includes(i);
+                const isCurrent = i === gameState.currentLevel && !isCompleted;
+                const isLocked = i > 0 && !gameState.completedLevels.includes(i - 1);
+                
+                chaptersHtml += `
+                    <div style="padding: 20px; background: ${isCompleted ? 'rgba(16, 185, 129, 0.2)' : isCurrent ? 'rgba(245, 158, 11, 0.2)' : 'rgba(255, 255, 255, 0.1)'}; border-radius: 12px; border: 2px solid ${isCompleted ? 'var(--color-success)' : isCurrent ? 'var(--color-secondary)' : 'rgba(255, 255, 255, 0.2)'}; opacity: ${isLocked ? '0.5' : '1'}; cursor: ${isLocked ? 'not-allowed' : 'pointer'};" onclick="${!isLocked ? `startChapter(${i})` : ''}">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="font-size: 48px;">${ch.icon}</div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">Глава ${ch.num}: ${ch.title}</div>
+                                <div style="font-size: 14px; opacity: 0.8;">${isCompleted ? '✅ Пройдено' : isCurrent ? '▶️ Текущая глава' : isLocked ? '🔒 Заблокировано' : '⭕ Не начата'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = `
+                <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+                    <h2 style="font-size: 36px; margin-bottom: 24px; text-align: center;">🗺️ Карта приключений</h2>
+                    <div style="margin-bottom: 24px; padding: 16px; background: rgba(147, 51, 234, 0.2); border-radius: 12px; text-align: center;">
+                        <div style="font-size: 18px;">Прогресс: <strong>${gameState.completedLevels.length}/6 глав</strong></div>
+                    </div>
+                    <div style="display: grid; gap: 16px;">
+                        ${chaptersHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Start chapter
+        function startChapter(chapterIndex) {
+            gameState.currentLevel = chapterIndex;
+            gameState.currentDialogue = 0;
+            gameState.phase = 'story';
+            showLevel(chapterIndex);
+        }
+
+        // Show survey
+        function showSurvey() {
+            hideEduSidebar();
+            const game = document.getElementById('game');
+            const container = game.querySelector('.container');
+            
+            let currentQ = 0;
+            const responses = [];
+            
+            const surveyQuestions = [
+                {
+                    text: 'Какой момент игры был самым полезным?',
+                    options: [
+                        '🎭 Встреча с Карабасом (инвестиции)',
+                        '🦊 Лиса и крипто/МЛМ',
+                        '🐕 Артемон и займы',
+                        '👧 Мальвина и правильные инвестиции',
+                        '🏆 Финальное испытание'
+                    ]
+                },
+                {
+                    text: 'Применишь ли ты эти знания в жизни?',
+                    options: ['✅ Да, обязательно!', '🤔 Может быть', '😐 Не уверен', '❌ Нет']
+                },
+                {
+                    text: 'Какой тип мошенничества тебя напугал больше?',
+                    options: [
+                        '💰 Инвестиции с большими обещаниями',
+                        '📈 Крипто и МЛМ пирамиды',
+                        '💸 Быстрые займы',
+                        '⚠️ Все страшны одинаково'
+                    ]
+                },
+                {
+                    text: 'Рекомендуешь ли игру друзьям? (1-5 звезд)',
+                    type: 'rating'
+                },
+                {
+                    text: 'Что добавить в следующую версию? (необязательно)',
+                    type: 'text'
+                }
+            ];
+            
+            function showSurveyQuestion() {
+                const q = surveyQuestions[currentQ];
+                
+                if (q.type === 'rating') {
+                    container.innerHTML = `
+                        <div class="glass-card" style="text-align: center;">
+                            <h2 style="font-size: 28px; margin-bottom: 20px;">Опрос</h2>
+                            <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Вопрос ${currentQ + 1} из ${surveyQuestions.length}</p>
+                            <h3 style="font-size: 22px; margin-bottom: 32px;">${q.text}</h3>
+                            <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 32px;" id="ratingStars"></div>
+                        </div>
+                    `;
+                    
+                    const starsDiv = document.getElementById('ratingStars');
+                    for (let i = 1; i <= 5; i++) {
+                        const star = document.createElement('div');
+                        star.innerHTML = '⭐';
+                        star.style.fontSize = '48px';
+                        star.style.cursor = 'pointer';
+                        star.style.opacity = '0.3';
+                        star.style.transition = 'all 0.3s ease';
+                        star.onmouseover = () => star.style.opacity = '1';
+                        star.onmouseout = () => star.style.opacity = '0.3';
+                        star.onclick = () => {
+                            responses.push(i);
+                            continueSurvey();
+                        };
+                        starsDiv.appendChild(star);
+                    }
+                } else if (q.type === 'text') {
+                    container.innerHTML = `
+                        <div class="glass-card">
+                            <h2 style="font-size: 28px; margin-bottom: 20px;">Опрос</h2>
+                            <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Вопрос ${currentQ + 1} из ${surveyQuestions.length}</p>
+                            <h3 style="font-size: 22px; margin-bottom: 24px;">${q.text}</h3>
+                            <textarea id="surveyText" style="width: 100%; min-height: 120px; padding: 12px; font-size: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.3);" placeholder="Твои идеи..."></textarea>
+                            <button class="btn btn-primary" onclick="submitTextAnswer()" style="margin-top: 16px;">Далее</button>
+                        </div>
+                    `;
+                    
+                    window.submitTextAnswer = () => {
+                        const text = document.getElementById('surveyText').value;
+                        responses.push(text || 'Без ответа');
+                        continueSurvey();
+                    };
+                } else {
+                    container.innerHTML = `
+                        <div class="glass-card">
+                            <h2 style="font-size: 28px; margin-bottom: 20px;">Опрос</h2>
+                            <p style="font-size: 18px; margin-bottom: 12px; opacity: 0.8;">Вопрос ${currentQ + 1} из ${surveyQuestions.length}</p>
+                            <h3 style="font-size: 22px; margin-bottom: 24px;">${q.text}</h3>
+                            <div class="choices" id="surveyChoices"></div>
+                        </div>
+                    `;
+                    
+                    const choicesDiv = document.getElementById('surveyChoices');
+                    q.options.forEach((option, index) => {
+                        setTimeout(() => {
+                            const btn = document.createElement('button');
+                            btn.className = 'choice-btn';
+                            btn.innerHTML = `<span class="choice-icon">${String.fromCharCode(65 + index)}</span><span>${option}</span>`;
+                            btn.onclick = () => {
+                                responses.push(option);
+                                continueSurvey();
+                            };
+                            choicesDiv.appendChild(btn);
+                        }, index * 100);
+                    });
+                }
+            }
+            
+            function continueSurvey() {
+                currentQ++;
+                if (currentQ < surveyQuestions.length) {
+                    setTimeout(() => showSurveyQuestion(), 300);
+                } else {
+                    completeSurvey();
+                }
+            }
+            
+            function completeSurvey() {
+                // Increment global counter
+                gameState.globalCitizensCount++;
+                
+                container.innerHTML = `
+                    <div class="glass-card" style="text-align: center;">
+                        <div style="font-size: 80px; margin-bottom: 20px; animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);">🎉</div>
+                        <h2 style="font-size: 36px; margin-bottom: 24px;">Спасибо за прохождение!</h2>
+                        <div style="background: rgba(245, 158, 11, 0.2); padding: 24px; border-radius: 16px; margin: 32px 0; border: 2px solid var(--color-secondary);">
+                            <div style="font-size: 24px; margin-bottom: 12px;">🌟 +1 финансово грамотный гражданин!</div>
+                            <div style="font-size: 48px; font-weight: bold; color: var(--color-secondary);">Всего: ${gameState.globalCitizensCount}</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="showFinalResults()">📊 Посмотреть результаты</button>
+                    </div>
+                `;
+                
+                createParticleBurst('🎉', 30);
+            }
+            
+            showSurveyQuestion();
+        }
+
+        // Show final results
+        window.showFinalResults = function() {
+            showEnding();
+        };
+
+        // Restart game
+        function restartGame() {
+            gameState.coins = 5;
+            gameState.wisdom = 0;
+            gameState.currentLevel = 0;
+            gameState.currentDialogue = 0;
+            gameState.completedLevels = [];
+            gameState.achievements = [];
+            gameState.preTestScore = 0;
+            gameState.postTestScore = 0;
+            gameState.choicesHistory = [];
+            gameState.phase = 'landing';
+            
+            document.getElementById('game').style.display = 'none';
+            document.getElementById('landing').style.display = 'flex';
+            document.getElementById('statsBar').classList.add('hidden');
+            initializeCounter();
+            
+            changeBackground('linear-gradient(135deg, #667eea 0%, #764ba2 100%)');
+        }
+
+        // Show image in dialogue context
+        function showItemImage(imageName) {
+            const imageUrl = itemImages[imageName];
+            if (!imageUrl) return;
+            
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.style.cssText = 'position: fixed; top: 20px; left: 20px; width: 150px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 1000; animation: slideInLeft 0.6s ease-out;';
+            img.onerror = () => img.remove();
+            document.body.appendChild(img);
+            
+            setTimeout(() => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => img.remove(), 500);
+            }, 3000);
+        }
+        
+        // Sparkle effect with image
+        function triggerSparkleEffect() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.textContent = '✨';
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.fontSize = '32px';
+                    document.body.appendChild(particle);
+                    setTimeout(() => particle.remove(), 2000);
+                }, i * 100);
+            }
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCounter();
+            
+            const coinStat = document.getElementById('coinStat');
+            if (coinStat) {
+                coinStat.addEventListener('click', () => {
+                    createParticleBurst('🪙', 5);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

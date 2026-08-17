@@ -1,0 +1,178 @@
+// Prisma Schema для исследовательской БД игры "Золотой Детектор"
+// Генерация клиента: npx prisma generate
+// Миграция: npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// ОСНОВНАЯ ТАБЛИЦА СЕССИЙ
+// ============================================
+
+model Session {
+  id              String   @id @default(uuid())
+  sessionId       String   @unique @map("session_id") // ID из фронтенда
+  userId          String?  @map("user_id") // Опциональный идентификатор игрока
+  
+  // Временные метки
+  startTime       DateTime @map("start_time")
+  endTime         DateTime? @map("end_time")
+  totalPlayTime   Int      @default(0) @map("total_play_time") // секунды
+  
+  // Финальные результаты
+  finalCoins      Int      @default(5) @map("final_coins")
+  finalWisdom     Int      @default(0) @map("final_wisdom")
+  
+  // JSON поля для быстрого доступа
+  completedLevels Json     @default("[]") @map("completed_levels") // [0,1,2,3...]
+  achievements    Json     @default("[]") // ["achievement1", "achievement2"]
+  timePerLevel    Json     @default("{}") @map("time_per_level") // {"0": 120, "1": 180}
+  
+  // Полный dump для гарантии сохранности всех данных
+  rawJson         Json     @map("raw_json")
+  
+  // Метаданные
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  
+  // Связи
+  quizAnswers     QuizAnswer[]
+  dialogueChoices DialogueChoice[]
+  testResults     TestResult[]
+  materialViews   MaterialView[]
+  
+  @@index([sessionId])
+  @@index([startTime])
+  @@index([userId])
+  @@map("sessions")
+}
+
+// ============================================
+// ОТВЕТЫ НА ВИКТОРИНЫ
+// ============================================
+
+model QuizAnswer {
+  id             String   @id @default(uuid())
+  sessionId      String   @map("session_id")
+  
+  // Контекст вопроса
+  levelId        Int      @map("level_id")
+  questionIndex  Int      @map("question_index")
+  questionText   String   @map("question_text") @db.Text
+  
+  // Ответ игрока
+  selectedAnswer String   @map("selected_answer") @db.Text
+  isCorrect      Boolean  @map("is_correct")
+  
+  // Временная метка
+  timestamp      DateTime
+  
+  // Связь с сессией
+  session        Session  @relation(fields: [sessionId], references: [sessionId], onDelete: Cascade)
+  
+  createdAt      DateTime @default(now()) @map("created_at")
+  
+  @@index([sessionId])
+  @@index([levelId])
+  @@index([isCorrect])
+  @@map("quiz_answers")
+}
+
+// ============================================
+// ВЫБОРЫ В ДИАЛОГАХ
+// ============================================
+
+model DialogueChoice {
+  id             String   @id @default(uuid())
+  sessionId      String   @map("session_id")
+  
+  // Контекст диалога
+  levelId        Int      @map("level_id")
+  dialogueIndex  Int      @map("dialogue_index")
+  characterName  String   @map("character_name")
+  
+  // Выбор игрока
+  choiceText     String   @map("choice_text") @db.Text
+  wisdomChange   Int      @default(0) @map("wisdom_change")
+  coinChange     Int      @default(0) @map("coin_change")
+  
+  // Временная метка
+  timestamp      DateTime
+  
+  // Связь с сессией
+  session        Session  @relation(fields: [sessionId], references: [sessionId], onDelete: Cascade)
+  
+  createdAt      DateTime @default(now()) @map("created_at")
+  
+  @@index([sessionId])
+  @@index([levelId])
+  @@index([characterName])
+  @@map("dialogue_choices")
+}
+
+// ============================================
+// РЕЗУЛЬТАТЫ ТЕСТОВ
+// ============================================
+
+model TestResult {
+  id             String   @id @default(uuid())
+  sessionId      String   @map("session_id")
+  
+  // Тип теста
+  testType       String   @map("test_type") // 'scenario' | 'complex' | 'post'
+  
+  // Результаты
+  score          Int
+  totalQuestions Int      @map("total_questions")
+  
+  // Детальные ответы (JSON массив)
+  rawAnswers     Json     @map("raw_answers") // [{questionIndex, selectedAnswer, correctAnswer, isCorrect}]
+  
+  // Временная метка
+  timestamp      DateTime
+  
+  // Связь с сессией
+  session        Session  @relation(fields: [sessionId], references: [sessionId], onDelete: Cascade)
+  
+  createdAt      DateTime @default(now()) @map("created_at")
+  
+  @@index([sessionId])
+  @@index([testType])
+  @@map("test_results")
+}
+
+// ============================================
+// ПРОСМОТРЫ ОБРАЗОВАТЕЛЬНЫХ МАТЕРИАЛОВ
+// ============================================
+
+model MaterialView {
+  id            String   @id @default(uuid())
+  sessionId     String   @map("session_id")
+  
+  // Материал
+  materialId    Int      @map("material_id")
+  materialTitle String   @map("material_title")
+  
+  // Длительность просмотра
+  viewDuration  Int      @map("view_duration") // секунды
+  
+  // Временная метка
+  timestamp     DateTime
+  
+  // Связь с сессией
+  session       Session  @relation(fields: [sessionId], references: [sessionId], onDelete: Cascade)
+  
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  @@index([sessionId])
+  @@index([materialId])
+  @@map("material_views")
+}
+

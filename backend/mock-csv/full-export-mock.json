@@ -1,0 +1,3244 @@
+{
+  "exportDate": "2026-07-08T13:14:58.976Z",
+  "totalPlayers": 13,
+  "totalSessions": 13,
+  "sessions": [
+    {
+      "sessionId": "session_mock_1_3b5798",
+      "startTime": "2026-07-08T10:00:00.000Z",
+      "endTime": "2026-07-08T10:51:08.000Z",
+      "userId": "user_mock_1",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 8,
+      "finalWisdom": 85,
+      "achievements": [
+        "ach_72_hours",
+        "ach_alert_spot"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:01:03.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T10:03:11.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:05:04.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:07:13.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:09:09.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:11:01.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T10:17:26.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 67,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 4,
+              "correctAnswer": 3,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 5,
+              "correctAnswer": 4,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 0,
+              "correctAnswer": 5,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T10:18:44.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock red flag) #1",
+          "wisdomChange": -5,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T10:03:08.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -8,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T10:05:44.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock safe) #3",
+          "wisdomChange": 9,
+          "coinChange": 6,
+          "timestamp": "2026-07-08T10:08:03.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -6,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T10:10:37.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -8,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T10:13:02.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock safe) #6",
+          "wisdomChange": 9,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T10:15:49.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 159,
+        "1": 224,
+        "2": 162,
+        "3": 175,
+        "4": 194,
+        "5": 252,
+        "6": 131,
+        "7": 283,
+        "8": 282,
+        "9": 224,
+        "10": 234,
+        "11": 211,
+        "12": 225,
+        "13": 313
+      },
+      "totalPlayTime": 3068,
+      "materialViews": [
+        {
+          "materialId": 1,
+          "materialTitle": "Как распознать манипуляции",
+          "viewDuration": 47,
+          "timestamp": "2026-07-08T10:08:22.000Z"
+        },
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 73,
+          "timestamp": "2026-07-08T10:11:51.000Z"
+        },
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 95,
+          "timestamp": "2026-07-08T10:15:17.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_2_d02e8e",
+      "startTime": "2026-07-08T10:30:00.000Z",
+      "endTime": "2026-07-08T11:22:02.000Z",
+      "userId": "user_mock_2",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 6,
+      "finalWisdom": 67,
+      "achievements": [
+        "ach_three_baskets",
+        "ach_finish_decent"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:31:10.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:33:00.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T10:35:11.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:37:04.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:39:11.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T10:41:18.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 50,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 0,
+              "correctAnswer": 3,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T10:46:53.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 67,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 3,
+              "correctAnswer": 2,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 4,
+              "correctAnswer": 3,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 5,
+              "correctAnswer": 4,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 5,
+              "correctAnswer": 5,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T10:46:16.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock red flag) #1",
+          "wisdomChange": -8,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T10:33:14.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock safe) #2",
+          "wisdomChange": 8,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T10:35:31.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock safe) #3",
+          "wisdomChange": 8,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T10:38:07.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -9,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T10:40:34.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -9,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T10:43:12.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock red flag) #6",
+          "wisdomChange": -6,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T10:45:31.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 251,
+        "1": 204,
+        "2": 272,
+        "3": 171,
+        "4": 192,
+        "5": 193,
+        "6": 281,
+        "7": 151,
+        "8": 121,
+        "9": 112,
+        "10": 154,
+        "11": 230,
+        "12": 248,
+        "13": 139
+      },
+      "totalPlayTime": 3122,
+      "materialViews": [
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 93,
+          "timestamp": "2026-07-08T10:38:28.000Z"
+        },
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 132,
+          "timestamp": "2026-07-08T10:41:40.000Z"
+        },
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 82,
+          "timestamp": "2026-07-08T10:45:05.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_3_7bde69",
+      "startTime": "2026-07-08T11:00:00.000Z",
+      "endTime": "2026-07-08T11:33:47.000Z",
+      "userId": "user_mock_3",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 13,
+      "finalWisdom": 88,
+      "achievements": [
+        "ach_body_signal",
+        "ach_three_baskets"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T11:01:06.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:03:15.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:05:15.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:07:18.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:09:16.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:11:00.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 0,
+              "correctAnswer": 3,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T11:16:51.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 67,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 5,
+              "correctAnswer": 4,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 0,
+              "correctAnswer": 5,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T11:16:35.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock red flag) #1",
+          "wisdomChange": -9,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T11:03:01.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -9,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T11:05:35.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock safe) #3",
+          "wisdomChange": 11,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T11:08:02.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -8,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T11:10:44.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock safe) #5",
+          "wisdomChange": 7,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T11:13:16.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock safe) #6",
+          "wisdomChange": 8,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T11:15:42.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 209,
+        "1": 160,
+        "2": 131,
+        "3": 251,
+        "4": 94,
+        "5": 142,
+        "6": 276,
+        "7": 146,
+        "8": 183,
+        "9": 168,
+        "10": 233,
+        "11": 286,
+        "12": 314,
+        "13": 170
+      },
+      "totalPlayTime": 2027,
+      "materialViews": [
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 57,
+          "timestamp": "2026-07-08T11:08:39.000Z"
+        },
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 87,
+          "timestamp": "2026-07-08T11:11:54.000Z"
+        },
+        {
+          "materialId": 5,
+          "materialTitle": "Документы и контракты без ошибок",
+          "viewDuration": 77,
+          "timestamp": "2026-07-08T11:15:08.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_4_022fa6",
+      "startTime": "2026-07-08T11:30:00.000Z",
+      "endTime": "2026-07-08T12:12:28.000Z",
+      "userId": "user_mock_4",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 26,
+      "finalWisdom": 92,
+      "achievements": [
+        "ach_finish_decent",
+        "ach_first_step"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:31:07.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T11:33:11.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:35:14.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:37:11.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:39:12.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T11:41:01.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T11:46:46.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 83,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 4,
+              "correctAnswer": 3,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 0,
+              "correctAnswer": 5,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T11:47:30.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 10,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T11:33:03.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock safe) #2",
+          "wisdomChange": 10,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T11:35:46.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #3",
+          "wisdomChange": -5,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T11:38:11.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock safe) #4",
+          "wisdomChange": 11,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T11:40:31.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -7,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T11:43:17.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock red flag) #6",
+          "wisdomChange": -6,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T11:45:44.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 252,
+        "1": 225,
+        "2": 270,
+        "3": 237,
+        "4": 199,
+        "5": 169,
+        "6": 206,
+        "7": 260,
+        "8": 295,
+        "9": 108,
+        "10": 210,
+        "11": 150,
+        "12": 171,
+        "13": 262
+      },
+      "totalPlayTime": 2548,
+      "materialViews": [
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 79,
+          "timestamp": "2026-07-08T11:38:34.000Z"
+        },
+        {
+          "materialId": 5,
+          "materialTitle": "Документы и контракты без ошибок",
+          "viewDuration": 45,
+          "timestamp": "2026-07-08T11:41:46.000Z"
+        },
+        {
+          "materialId": 1,
+          "materialTitle": "Как распознать манипуляции",
+          "viewDuration": 126,
+          "timestamp": "2026-07-08T11:45:03.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_5_c6374e",
+      "startTime": "2026-07-08T12:00:00.000Z",
+      "endTime": "2026-07-08T12:40:11.000Z",
+      "userId": "user_mock_5",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 34,
+      "finalWisdom": 63,
+      "achievements": [
+        "ach_contract_check",
+        "ach_alert_spot"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T12:01:10.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T12:03:02.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:05:02.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T12:07:01.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:09:11.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:11:03.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 3,
+              "correctAnswer": 2,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 0,
+              "correctAnswer": 3,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T12:15:18.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 67,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 0,
+              "correctAnswer": 5,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T12:16:56.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 9,
+          "coinChange": 6,
+          "timestamp": "2026-07-08T12:03:02.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -9,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T12:05:40.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock red flag) #3",
+          "wisdomChange": -9,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T12:08:18.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock safe) #4",
+          "wisdomChange": 9,
+          "coinChange": 6,
+          "timestamp": "2026-07-08T12:10:32.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -8,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T12:13:19.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock red flag) #6",
+          "wisdomChange": -5,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T12:15:35.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 124,
+        "1": 182,
+        "2": 246,
+        "3": 255,
+        "4": 109,
+        "5": 135,
+        "6": 107,
+        "7": 176,
+        "8": 259,
+        "9": 219,
+        "10": 171,
+        "11": 301,
+        "12": 236,
+        "13": 269
+      },
+      "totalPlayTime": 2411,
+      "materialViews": [
+        {
+          "materialId": 5,
+          "materialTitle": "Документы и контракты без ошибок",
+          "viewDuration": 119,
+          "timestamp": "2026-07-08T12:08:40.000Z"
+        },
+        {
+          "materialId": 1,
+          "materialTitle": "Как распознать манипуляции",
+          "viewDuration": 44,
+          "timestamp": "2026-07-08T12:11:40.000Z"
+        },
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 48,
+          "timestamp": "2026-07-08T12:15:19.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_6_bf5adc",
+      "startTime": "2026-07-08T12:30:00.000Z",
+      "endTime": "2026-07-08T13:14:39.000Z",
+      "userId": "user_mock_6",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 34,
+      "finalWisdom": 62,
+      "achievements": [
+        "ach_three_baskets",
+        "ach_body_signal"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:31:06.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:33:03.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T12:35:17.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:37:05.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:39:15.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T12:41:03.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T12:46:32.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 83,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 0,
+              "correctAnswer": 5,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T12:46:05.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 8,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T12:33:14.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -6,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T12:35:32.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock safe) #3",
+          "wisdomChange": 10,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T12:38:00.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -7,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T12:40:31.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -6,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T12:43:19.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #6",
+          "wisdomChange": -7,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T12:45:42.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 176,
+        "1": 270,
+        "2": 205,
+        "3": 277,
+        "4": 183,
+        "5": 154,
+        "6": 174,
+        "7": 207,
+        "8": 231,
+        "9": 306,
+        "10": 232,
+        "11": 202,
+        "12": 264,
+        "13": 120
+      },
+      "totalPlayTime": 2679,
+      "materialViews": [
+        {
+          "materialId": 1,
+          "materialTitle": "Как распознать манипуляции",
+          "viewDuration": 112,
+          "timestamp": "2026-07-08T12:38:32.000Z"
+        },
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 133,
+          "timestamp": "2026-07-08T12:42:03.000Z"
+        },
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 122,
+          "timestamp": "2026-07-08T12:45:14.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_7_4293b0",
+      "startTime": "2026-07-08T13:00:00.000Z",
+      "endTime": "2026-07-08T13:52:43.000Z",
+      "userId": "user_mock_7",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 13,
+      "finalWisdom": 66,
+      "achievements": [
+        "ach_first_step",
+        "ach_contract_check"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T13:01:07.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:03:08.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:05:18.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T13:07:06.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:09:01.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:11:18.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 3,
+              "correctAnswer": 2,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 0,
+              "correctAnswer": 3,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T13:18:53.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 83,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 5,
+              "correctAnswer": 5,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T13:17:49.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 11,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T13:03:02.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -5,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T13:05:49.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock safe) #3",
+          "wisdomChange": 8,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T13:08:17.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -8,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T13:10:41.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -9,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T13:13:16.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock red flag) #6",
+          "wisdomChange": -6,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T13:15:45.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 82,
+        "1": 87,
+        "2": 233,
+        "3": 238,
+        "4": 158,
+        "5": 220,
+        "6": 203,
+        "7": 257,
+        "8": 133,
+        "9": 129,
+        "10": 145,
+        "11": 151,
+        "12": 178,
+        "13": 256
+      },
+      "totalPlayTime": 3163,
+      "materialViews": [
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 72,
+          "timestamp": "2026-07-08T13:08:44.000Z"
+        },
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 72,
+          "timestamp": "2026-07-08T13:11:55.000Z"
+        },
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 38,
+          "timestamp": "2026-07-08T13:15:13.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_8_0347e4",
+      "startTime": "2026-07-08T13:30:00.000Z",
+      "endTime": "2026-07-08T14:05:05.000Z",
+      "userId": "user_mock_8",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 16,
+      "finalWisdom": 75,
+      "achievements": [
+        "ach_three_baskets",
+        "ach_body_signal"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:31:18.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:33:05.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:35:11.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:37:19.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:39:18.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T13:41:18.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 50,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T13:46:27.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 67,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 3,
+              "correctAnswer": 2,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 4,
+              "correctAnswer": 3,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 5,
+              "correctAnswer": 4,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 5,
+              "correctAnswer": 5,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T13:46:07.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 10,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T13:33:08.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock safe) #2",
+          "wisdomChange": 7,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T13:35:41.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock safe) #3",
+          "wisdomChange": 8,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T13:38:19.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -5,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T13:40:33.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -8,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T13:43:17.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #6",
+          "wisdomChange": -6,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T13:45:32.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 97,
+        "1": 274,
+        "2": 280,
+        "3": 212,
+        "4": 156,
+        "5": 193,
+        "6": 121,
+        "7": 246,
+        "8": 242,
+        "9": 123,
+        "10": 306,
+        "11": 217,
+        "12": 193,
+        "13": 235
+      },
+      "totalPlayTime": 2105,
+      "materialViews": [
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 59,
+          "timestamp": "2026-07-08T13:38:37.000Z"
+        },
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 121,
+          "timestamp": "2026-07-08T13:42:01.000Z"
+        },
+        {
+          "materialId": 5,
+          "materialTitle": "Документы и контракты без ошибок",
+          "viewDuration": 49,
+          "timestamp": "2026-07-08T13:45:01.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_9_8d9851",
+      "startTime": "2026-07-08T14:00:00.000Z",
+      "endTime": "2026-07-08T14:40:23.000Z",
+      "userId": "user_mock_9",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 13,
+      "finalWisdom": 77,
+      "achievements": [
+        "ach_first_step",
+        "ach_72_hours"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:01:08.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:03:05.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T14:05:14.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T14:07:12.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:09:16.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T14:11:19.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T14:16:02.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 83,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 5,
+              "correctAnswer": 4,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 5,
+              "correctAnswer": 5,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T14:15:28.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 10,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T14:03:04.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -7,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T14:05:46.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #3",
+          "wisdomChange": -8,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T14:08:07.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock safe) #4",
+          "wisdomChange": 8,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T14:10:45.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -7,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T14:13:19.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock safe) #6",
+          "wisdomChange": 7,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T14:15:42.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 99,
+        "1": 106,
+        "2": 220,
+        "3": 193,
+        "4": 129,
+        "5": 222,
+        "6": 222,
+        "7": 279,
+        "8": 183,
+        "9": 162,
+        "10": 274,
+        "11": 206,
+        "12": 310,
+        "13": 170
+      },
+      "totalPlayTime": 2423,
+      "materialViews": [
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 119,
+          "timestamp": "2026-07-08T14:08:40.000Z"
+        },
+        {
+          "materialId": 5,
+          "materialTitle": "Документы и контракты без ошибок",
+          "viewDuration": 45,
+          "timestamp": "2026-07-08T14:11:40.000Z"
+        },
+        {
+          "materialId": 1,
+          "materialTitle": "Как распознать манипуляции",
+          "viewDuration": 116,
+          "timestamp": "2026-07-08T14:15:01.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_10_745984",
+      "startTime": "2026-07-08T14:30:00.000Z",
+      "endTime": "2026-07-08T15:17:34.000Z",
+      "userId": "user_mock_10",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 30,
+      "finalWisdom": 67,
+      "achievements": [
+        "ach_alert_spot",
+        "ach_body_signal"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:31:15.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:33:15.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:35:12.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T14:37:04.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:39:10.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T14:41:19.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T14:45:33.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 67,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 0,
+              "correctAnswer": 5,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T14:47:42.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 10,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T14:33:06.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -6,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T14:35:44.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock safe) #3",
+          "wisdomChange": 12,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T14:38:08.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock safe) #4",
+          "wisdomChange": 8,
+          "coinChange": 6,
+          "timestamp": "2026-07-08T14:40:42.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock safe) #5",
+          "wisdomChange": 8,
+          "coinChange": 6,
+          "timestamp": "2026-07-08T14:43:00.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock safe) #6",
+          "wisdomChange": 10,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T14:45:42.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 134,
+        "1": 184,
+        "2": 244,
+        "3": 248,
+        "4": 120,
+        "5": 215,
+        "6": 124,
+        "7": 171,
+        "8": 193,
+        "9": 299,
+        "10": 129,
+        "11": 286,
+        "12": 229,
+        "13": 134
+      },
+      "totalPlayTime": 2854,
+      "materialViews": [
+        {
+          "materialId": 5,
+          "materialTitle": "Документы и контракты без ошибок",
+          "viewDuration": 101,
+          "timestamp": "2026-07-08T14:38:23.000Z"
+        },
+        {
+          "materialId": 1,
+          "materialTitle": "Как распознать манипуляции",
+          "viewDuration": 115,
+          "timestamp": "2026-07-08T14:41:50.000Z"
+        },
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 121,
+          "timestamp": "2026-07-08T14:45:00.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_11_384c66",
+      "startTime": "2026-07-08T15:00:00.000Z",
+      "endTime": "2026-07-08T15:35:10.000Z",
+      "userId": "user_mock_11",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 30,
+      "finalWisdom": 64,
+      "achievements": [
+        "ach_three_baskets",
+        "ach_alert_spot"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:01:15.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:03:17.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:05:10.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:07:10.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:09:05.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:11:00.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T15:15:03.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 67,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 0,
+              "correctAnswer": 5,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T15:18:04.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock red flag) #1",
+          "wisdomChange": -5,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T15:03:04.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock safe) #2",
+          "wisdomChange": 9,
+          "coinChange": 5,
+          "timestamp": "2026-07-08T15:05:35.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #3",
+          "wisdomChange": -7,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T15:08:05.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -9,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T15:10:49.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -7,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T15:13:18.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock safe) #6",
+          "wisdomChange": 10,
+          "coinChange": 4,
+          "timestamp": "2026-07-08T15:15:30.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 147,
+        "1": 272,
+        "2": 141,
+        "3": 160,
+        "4": 254,
+        "5": 269,
+        "6": 132,
+        "7": 284,
+        "8": 270,
+        "9": 133,
+        "10": 180,
+        "11": 186,
+        "12": 185,
+        "13": 197
+      },
+      "totalPlayTime": 2110,
+      "materialViews": [
+        {
+          "materialId": 1,
+          "materialTitle": "Как распознать манипуляции",
+          "viewDuration": 76,
+          "timestamp": "2026-07-08T15:08:25.000Z"
+        },
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 109,
+          "timestamp": "2026-07-08T15:11:53.000Z"
+        },
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 154,
+          "timestamp": "2026-07-08T15:15:16.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_12_37bbd8",
+      "startTime": "2026-07-08T15:30:00.000Z",
+      "endTime": "2026-07-08T16:15:18.000Z",
+      "userId": "user_mock_12",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 14,
+      "finalWisdom": 52,
+      "achievements": [
+        "ach_three_baskets",
+        "ach_contract_check"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T15:31:12.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:33:07.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:35:09.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:37:17.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T15:39:03.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T15:41:19.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 3,
+              "correctAnswer": 2,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 0,
+              "correctAnswer": 3,
+              "isCorrect": false
+            }
+          ],
+          "timestamp": "2026-07-08T15:48:02.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 83,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 5,
+              "correctAnswer": 5,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T15:48:14.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "uncle",
+          "choiceText": "Choice (mock safe) #1",
+          "wisdomChange": 11,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T15:33:10.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -6,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T15:35:33.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock red flag) #3",
+          "wisdomChange": -7,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T15:38:08.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock red flag) #4",
+          "wisdomChange": -8,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T15:40:47.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -7,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T15:43:11.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock red flag) #6",
+          "wisdomChange": -7,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T15:45:36.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 96,
+        "1": 134,
+        "2": 230,
+        "3": 110,
+        "4": 104,
+        "5": 235,
+        "6": 231,
+        "7": 167,
+        "8": 188,
+        "9": 117,
+        "10": 229,
+        "11": 149,
+        "12": 202,
+        "13": 168
+      },
+      "totalPlayTime": 2718,
+      "materialViews": [
+        {
+          "materialId": 2,
+          "materialTitle": "Телесный барометр: сигналы тревоги",
+          "viewDuration": 114,
+          "timestamp": "2026-07-08T15:38:27.000Z"
+        },
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 100,
+          "timestamp": "2026-07-08T15:41:55.000Z"
+        },
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 104,
+          "timestamp": "2026-07-08T15:45:20.000Z"
+        }
+      ]
+    },
+    {
+      "sessionId": "session_mock_13_a1610b",
+      "startTime": "2026-07-08T16:00:00.000Z",
+      "endTime": "2026-07-08T16:54:24.000Z",
+      "userId": "user_mock_13",
+      "completedLevels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "finalCoins": 36,
+      "finalWisdom": 39,
+      "achievements": [
+        "ach_finish_decent",
+        "ach_three_baskets"
+      ],
+      "quizAnswers": [
+        {
+          "levelId": 0,
+          "questionIndex": 0,
+          "questionText": "Mock question 1 (level 0)",
+          "selectedAnswer": "answer_0_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T16:01:17.000Z"
+        },
+        {
+          "levelId": 1,
+          "questionIndex": 1,
+          "questionText": "Mock question 2 (level 1)",
+          "selectedAnswer": "answer_1_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T16:03:08.000Z"
+        },
+        {
+          "levelId": 2,
+          "questionIndex": 2,
+          "questionText": "Mock question 3 (level 2)",
+          "selectedAnswer": "answer_2_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T16:05:04.000Z"
+        },
+        {
+          "levelId": 3,
+          "questionIndex": 3,
+          "questionText": "Mock question 4 (level 3)",
+          "selectedAnswer": "answer_3_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T16:07:09.000Z"
+        },
+        {
+          "levelId": 4,
+          "questionIndex": 4,
+          "questionText": "Mock question 5 (level 4)",
+          "selectedAnswer": "answer_4_correct",
+          "isCorrect": true,
+          "timestamp": "2026-07-08T16:09:17.000Z"
+        },
+        {
+          "levelId": 5,
+          "questionIndex": 5,
+          "questionText": "Mock question 6 (level 5)",
+          "selectedAnswer": "answer_5_wrong",
+          "isCorrect": false,
+          "timestamp": "2026-07-08T16:11:11.000Z"
+        }
+      ],
+      "testResults": [
+        {
+          "testType": "scenario",
+          "score": 75,
+          "totalQuestions": 4,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 1,
+              "correctAnswer": 0,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 1,
+              "correctAnswer": 1,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T16:18:43.000Z"
+        },
+        {
+          "testType": "post",
+          "score": 83,
+          "totalQuestions": 6,
+          "answers": [
+            {
+              "questionIndex": 0,
+              "selectedAnswer": 0,
+              "correctAnswer": 0,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 1,
+              "selectedAnswer": 2,
+              "correctAnswer": 1,
+              "isCorrect": false
+            },
+            {
+              "questionIndex": 2,
+              "selectedAnswer": 2,
+              "correctAnswer": 2,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 3,
+              "selectedAnswer": 3,
+              "correctAnswer": 3,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 4,
+              "selectedAnswer": 4,
+              "correctAnswer": 4,
+              "isCorrect": true
+            },
+            {
+              "questionIndex": 5,
+              "selectedAnswer": 5,
+              "correctAnswer": 5,
+              "isCorrect": true
+            }
+          ],
+          "timestamp": "2026-07-08T16:18:15.000Z"
+        }
+      ],
+      "dialogueChoices": [
+        {
+          "levelId": 1,
+          "dialogueIndex": 0,
+          "characterName": "lawyer",
+          "choiceText": "Choice (mock red flag) #1",
+          "wisdomChange": -6,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T16:03:14.000Z"
+        },
+        {
+          "levelId": 2,
+          "dialogueIndex": 1,
+          "characterName": "stranger",
+          "choiceText": "Choice (mock red flag) #2",
+          "wisdomChange": -7,
+          "coinChange": -4,
+          "timestamp": "2026-07-08T16:05:40.000Z"
+        },
+        {
+          "levelId": 3,
+          "dialogueIndex": 2,
+          "characterName": "cricket",
+          "choiceText": "Choice (mock red flag) #3",
+          "wisdomChange": -9,
+          "coinChange": -2,
+          "timestamp": "2026-07-08T16:08:19.000Z"
+        },
+        {
+          "levelId": 4,
+          "dialogueIndex": 3,
+          "characterName": "buratino",
+          "choiceText": "Choice (mock safe) #4",
+          "wisdomChange": 9,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T16:10:43.000Z"
+        },
+        {
+          "levelId": 5,
+          "dialogueIndex": 4,
+          "characterName": "karabas",
+          "choiceText": "Choice (mock red flag) #5",
+          "wisdomChange": -6,
+          "coinChange": -3,
+          "timestamp": "2026-07-08T16:13:00.000Z"
+        },
+        {
+          "levelId": 1,
+          "dialogueIndex": 5,
+          "characterName": "turtle",
+          "choiceText": "Choice (mock safe) #6",
+          "wisdomChange": 11,
+          "coinChange": 3,
+          "timestamp": "2026-07-08T16:15:38.000Z"
+        }
+      ],
+      "timePerLevel": {
+        "0": 130,
+        "1": 275,
+        "2": 263,
+        "3": 134,
+        "4": 186,
+        "5": 266,
+        "6": 202,
+        "7": 114,
+        "8": 201,
+        "9": 215,
+        "10": 281,
+        "11": 185,
+        "12": 266,
+        "13": 230
+      },
+      "totalPlayTime": 3264,
+      "materialViews": [
+        {
+          "materialId": 3,
+          "materialTitle": "Правило 72 часов",
+          "viewDuration": 87,
+          "timestamp": "2026-07-08T16:08:25.000Z"
+        },
+        {
+          "materialId": 4,
+          "materialTitle": "3 корзины: базовая схема",
+          "viewDuration": 72,
+          "timestamp": "2026-07-08T16:11:47.000Z"
+        },
+        {
+          "materialId": 5,
+          "materialTitle": "Документы и контракты без ошибок",
+          "viewDuration": 119,
+          "timestamp": "2026-07-08T16:15:15.000Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+id,session_id,level_id,dialogue_index,character_name,choice_text,wisdom_change,coin_change,timestamp
+e389629c-b38d-c9f5-16bb-88c4f2f680cb,session_mock_1_3b5798,1,0,cricket,Choice (mock red flag) #1,-5,-2,2026-07-08T10:03:08.000Z
+18e7556c-c72c-1c3d-efb6-eaceae3d6b69,session_mock_1_3b5798,2,1,buratino,Choice (mock red flag) #2,-8,-4,2026-07-08T10:05:44.000Z
+6561f40c-7243-ba7d-54d9-30871791238a,session_mock_1_3b5798,3,2,karabas,Choice (mock safe) #3,9,6,2026-07-08T10:08:03.000Z
+6f3f3481-5d5e-1a7e-03d4-406d8a547b24,session_mock_1_3b5798,4,3,turtle,Choice (mock red flag) #4,-6,-3,2026-07-08T10:10:37.000Z
+759e3996-39de-362c-06b3-e7b451e4134f,session_mock_1_3b5798,5,4,uncle,Choice (mock red flag) #5,-8,-2,2026-07-08T10:13:02.000Z
+4adbe3b1-2371-2930-22c2-35ac69539dc7,session_mock_1_3b5798,1,5,lawyer,Choice (mock safe) #6,9,3,2026-07-08T10:15:49.000Z
+b97c8d4e-f816-eb94-b7c8-a60b35fbf94d,session_mock_2_d02e8e,1,0,buratino,Choice (mock red flag) #1,-8,-3,2026-07-08T10:33:14.000Z
+3de2be12-f75a-962d-1304-f6ac67f7791e,session_mock_2_d02e8e,2,1,karabas,Choice (mock safe) #2,8,4,2026-07-08T10:35:31.000Z
+5f52d011-b909-10b7-c9f7-f1335500d0e0,session_mock_2_d02e8e,3,2,turtle,Choice (mock safe) #3,8,3,2026-07-08T10:38:07.000Z
+16d3f665-f028-1678-30eb-6720da88baa9,session_mock_2_d02e8e,4,3,uncle,Choice (mock red flag) #4,-9,-4,2026-07-08T10:40:34.000Z
+8abe1e34-fe51-b631-fa93-5cf8475d5eb7,session_mock_2_d02e8e,5,4,lawyer,Choice (mock red flag) #5,-9,-2,2026-07-08T10:43:12.000Z
+1f630a33-606c-5f4b-aa73-bcb4ff782d05,session_mock_2_d02e8e,1,5,stranger,Choice (mock red flag) #6,-6,-2,2026-07-08T10:45:31.000Z
+45e4c31e-a017-62c9-abe9-91d298c61221,session_mock_3_7bde69,1,0,karabas,Choice (mock red flag) #1,-9,-4,2026-07-08T11:03:01.000Z
+2082e175-c6f4-82f1-ef22-e2b2d654086a,session_mock_3_7bde69,2,1,turtle,Choice (mock red flag) #2,-9,-2,2026-07-08T11:05:35.000Z
+14787b9f-c12e-ac74-811c-846c3a6af33f,session_mock_3_7bde69,3,2,uncle,Choice (mock safe) #3,11,3,2026-07-08T11:08:02.000Z
+e841f181-19f1-16b2-87ac-21568458957b,session_mock_3_7bde69,4,3,lawyer,Choice (mock red flag) #4,-8,-2,2026-07-08T11:10:44.000Z
+eaf646d9-77e1-c30e-fce1-0eb4686f8dc3,session_mock_3_7bde69,5,4,stranger,Choice (mock safe) #5,7,5,2026-07-08T11:13:16.000Z
+bcc39e58-a5fe-97f0-cfb1-d0f0cc4e5b8a,session_mock_3_7bde69,1,5,cricket,Choice (mock safe) #6,8,4,2026-07-08T11:15:42.000Z
+802761db-c77c-f90f-f4de-ebc60a908bc9,session_mock_4_022fa6,1,0,turtle,Choice (mock safe) #1,10,5,2026-07-08T11:33:03.000Z
+c06c2e4c-748b-9617-fce4-21184f38bff0,session_mock_4_022fa6,2,1,uncle,Choice (mock safe) #2,10,4,2026-07-08T11:35:46.000Z
+8184dca8-f2eb-40e8-ba29-eebe7cee4c39,session_mock_4_022fa6,3,2,lawyer,Choice (mock red flag) #3,-5,-2,2026-07-08T11:38:11.000Z
+3cb1b675-8c2a-5f3d-8d62-063217cdb5e7,session_mock_4_022fa6,4,3,stranger,Choice (mock safe) #4,11,5,2026-07-08T11:40:31.000Z
+c0c82960-669d-1dba-a7ac-6e5b97d03a09,session_mock_4_022fa6,5,4,cricket,Choice (mock red flag) #5,-7,-2,2026-07-08T11:43:17.000Z
+dd678fb6-3946-5d13-7f6b-6dd2d9d216ac,session_mock_4_022fa6,1,5,buratino,Choice (mock red flag) #6,-6,-3,2026-07-08T11:45:44.000Z
+5df5a5e9-b5ad-0132-656e-de88434b4fb1,session_mock_5_c6374e,1,0,uncle,Choice (mock safe) #1,9,6,2026-07-08T12:03:02.000Z
+a891c48c-accb-c1ec-50c2-342d473792e4,session_mock_5_c6374e,2,1,lawyer,Choice (mock red flag) #2,-9,-3,2026-07-08T12:05:40.000Z
+f500e460-ece9-5801-a05a-9e1bf73a2ada,session_mock_5_c6374e,3,2,stranger,Choice (mock red flag) #3,-9,-2,2026-07-08T12:08:18.000Z
+9b8da190-f6bc-fef8-60b4-f5b5458555f0,session_mock_5_c6374e,4,3,cricket,Choice (mock safe) #4,9,6,2026-07-08T12:10:32.000Z
+63c68072-f4ee-c2ef-fb31-e465686826ec,session_mock_5_c6374e,5,4,buratino,Choice (mock red flag) #5,-8,-2,2026-07-08T12:13:19.000Z
+e5bf484c-aae0-476d-c851-91c6cd6b2d0b,session_mock_5_c6374e,1,5,karabas,Choice (mock red flag) #6,-5,-4,2026-07-08T12:15:35.000Z
+9867f1f6-c537-49d3-af69-33c876fc9d0f,session_mock_6_bf5adc,1,0,lawyer,Choice (mock safe) #1,8,4,2026-07-08T12:33:14.000Z
+b7150ebb-3c6a-f4b5-f159-c482ec5b63d4,session_mock_6_bf5adc,2,1,stranger,Choice (mock red flag) #2,-6,-3,2026-07-08T12:35:32.000Z
+cce408a1-7e5f-7c97-b583-74eefdec69a3,session_mock_6_bf5adc,3,2,cricket,Choice (mock safe) #3,10,4,2026-07-08T12:38:00.000Z
+269761e0-d0e8-8b1c-4e1c-0f52010d7025,session_mock_6_bf5adc,4,3,buratino,Choice (mock red flag) #4,-7,-3,2026-07-08T12:40:31.000Z
+96c0a295-f867-f012-ea95-1ddbc0161e85,session_mock_6_bf5adc,5,4,karabas,Choice (mock red flag) #5,-6,-3,2026-07-08T12:43:19.000Z
+7b83e6b0-c33d-aa2f-c8d7-916eeb0f6c00,session_mock_6_bf5adc,1,5,turtle,Choice (mock red flag) #6,-7,-4,2026-07-08T12:45:42.000Z
+4066ebb3-08d9-fa07-4df2-8a017a94aab4,session_mock_7_4293b0,1,0,stranger,Choice (mock safe) #1,11,4,2026-07-08T13:03:02.000Z
+43de7e1e-8027-fe01-2035-afec555677e5,session_mock_7_4293b0,2,1,cricket,Choice (mock red flag) #2,-5,-4,2026-07-08T13:05:49.000Z
+a05da013-8316-6214-eb4a-158ca95962a3,session_mock_7_4293b0,3,2,buratino,Choice (mock safe) #3,8,3,2026-07-08T13:08:17.000Z
+4eaf1379-c1c7-1942-d1e7-01bc895eb425,session_mock_7_4293b0,4,3,karabas,Choice (mock red flag) #4,-8,-3,2026-07-08T13:10:41.000Z
+4ab6cfad-8324-2207-1fe9-a48fd2154289,session_mock_7_4293b0,5,4,turtle,Choice (mock red flag) #5,-9,-4,2026-07-08T13:13:16.000Z
+ef4238c3-52c9-b715-e4e7-fb2013b89802,session_mock_7_4293b0,1,5,uncle,Choice (mock red flag) #6,-6,-4,2026-07-08T13:15:45.000Z
+043c9063-b8a3-165c-8b3d-b8887367e128,session_mock_8_0347e4,1,0,cricket,Choice (mock safe) #1,10,4,2026-07-08T13:33:08.000Z
+e80f30b7-7002-3830-281a-27d41f6a3839,session_mock_8_0347e4,2,1,buratino,Choice (mock safe) #2,7,5,2026-07-08T13:35:41.000Z
+9ff550d7-6186-3ba6-5b20-c1dfde7379d5,session_mock_8_0347e4,3,2,karabas,Choice (mock safe) #3,8,4,2026-07-08T13:38:19.000Z
+55c0b124-fe07-6c2f-a996-d5dab1f249c9,session_mock_8_0347e4,4,3,turtle,Choice (mock red flag) #4,-5,-4,2026-07-08T13:40:33.000Z
+ae219374-698e-1021-4a8c-aa83f87fc97f,session_mock_8_0347e4,5,4,uncle,Choice (mock red flag) #5,-8,-3,2026-07-08T13:43:17.000Z
+54b135ea-0c79-8ff0-f729-8750e52769bc,session_mock_8_0347e4,1,5,lawyer,Choice (mock red flag) #6,-6,-2,2026-07-08T13:45:32.000Z
+128f67f6-3ea9-d644-b09e-96cb1a79e6e7,session_mock_9_8d9851,1,0,buratino,Choice (mock safe) #1,10,5,2026-07-08T14:03:04.000Z
+f4c04c28-0158-61fa-4f60-0b173e53b7af,session_mock_9_8d9851,2,1,karabas,Choice (mock red flag) #2,-7,-2,2026-07-08T14:05:46.000Z
+6d996053-8f37-f089-eb44-56d94dee2c49,session_mock_9_8d9851,3,2,turtle,Choice (mock red flag) #3,-8,-4,2026-07-08T14:08:07.000Z
+5192fdcb-48df-1afc-7c48-4fc802d81254,session_mock_9_8d9851,4,3,uncle,Choice (mock safe) #4,8,3,2026-07-08T14:10:45.000Z
+0f7cd79c-5e0e-16cf-b759-5d9df5aea114,session_mock_9_8d9851,5,4,lawyer,Choice (mock red flag) #5,-7,-3,2026-07-08T14:13:19.000Z
+bca4028c-f404-af3a-c453-869793d8b0ae,session_mock_9_8d9851,1,5,stranger,Choice (mock safe) #6,7,5,2026-07-08T14:15:42.000Z
+b9275999-8a4e-dda1-1c48-80656b2617f4,session_mock_10_745984,1,0,karabas,Choice (mock safe) #1,10,5,2026-07-08T14:33:06.000Z
+642f5f9d-cc09-417b-714f-d14856c2abfb,session_mock_10_745984,2,1,turtle,Choice (mock red flag) #2,-6,-3,2026-07-08T14:35:44.000Z
+748f7ea7-4e42-db62-dd0f-32e83e6d5053,session_mock_10_745984,3,2,uncle,Choice (mock safe) #3,12,4,2026-07-08T14:38:08.000Z
+1144f905-7c87-b664-d428-efd89bace430,session_mock_10_745984,4,3,lawyer,Choice (mock safe) #4,8,6,2026-07-08T14:40:42.000Z
+03e3ab36-6282-2c33-2632-80c5f9332854,session_mock_10_745984,5,4,stranger,Choice (mock safe) #5,8,6,2026-07-08T14:43:00.000Z
+066086c1-f148-abcb-a979-917c7dc35f24,session_mock_10_745984,1,5,cricket,Choice (mock safe) #6,10,3,2026-07-08T14:45:42.000Z
+0865d00f-5e14-33cc-f4ca-894118e17d34,session_mock_11_384c66,1,0,turtle,Choice (mock red flag) #1,-5,-3,2026-07-08T15:03:04.000Z
+27410e6f-79af-7096-8ce8-c8e98d7e930d,session_mock_11_384c66,2,1,uncle,Choice (mock safe) #2,9,5,2026-07-08T15:05:35.000Z
+a398a53e-1900-7a42-3d9e-12b468cc6a9e,session_mock_11_384c66,3,2,lawyer,Choice (mock red flag) #3,-7,-3,2026-07-08T15:08:05.000Z
+55f1d598-778d-ae66-1144-d2ef7b0e4c9f,session_mock_11_384c66,4,3,stranger,Choice (mock red flag) #4,-9,-3,2026-07-08T15:10:49.000Z
+ae65006c-cc60-0ed8-8f39-82b139eb44c6,session_mock_11_384c66,5,4,cricket,Choice (mock red flag) #5,-7,-3,2026-07-08T15:13:18.000Z
+601faced-fbd0-85cf-2635-26ada77a7fbb,session_mock_11_384c66,1,5,buratino,Choice (mock safe) #6,10,4,2026-07-08T15:15:30.000Z
+6db10e1c-2f43-9d33-f7e1-6cae60932937,session_mock_12_37bbd8,1,0,uncle,Choice (mock safe) #1,11,3,2026-07-08T15:33:10.000Z
+20d9f8ed-6117-a0d3-68f5-71d6dacfcb9e,session_mock_12_37bbd8,2,1,lawyer,Choice (mock red flag) #2,-6,-3,2026-07-08T15:35:33.000Z
+e5654582-b7e6-5739-9b6b-1581fe60d3f2,session_mock_12_37bbd8,3,2,stranger,Choice (mock red flag) #3,-7,-2,2026-07-08T15:38:08.000Z
+e5c7c3b9-2a01-7282-9db4-418c85e0792f,session_mock_12_37bbd8,4,3,cricket,Choice (mock red flag) #4,-8,-3,2026-07-08T15:40:47.000Z
+cb6e4d52-21d5-4af8-9ba8-e42e687577bf,session_mock_12_37bbd8,5,4,buratino,Choice (mock red flag) #5,-7,-4,2026-07-08T15:43:11.000Z
+655134c3-f9f2-f2e4-46a7-40097329ee22,session_mock_12_37bbd8,1,5,karabas,Choice (mock red flag) #6,-7,-2,2026-07-08T15:45:36.000Z
+412264f2-4a85-4364-15d7-898cbe0c91e5,session_mock_13_a1610b,1,0,lawyer,Choice (mock red flag) #1,-6,-4,2026-07-08T16:03:14.000Z
+da92471c-278d-ccf6-ec75-3c67536e6f0f,session_mock_13_a1610b,2,1,stranger,Choice (mock red flag) #2,-7,-4,2026-07-08T16:05:40.000Z
+d9c23700-f44d-18b6-cb4a-64522804b6b8,session_mock_13_a1610b,3,2,cricket,Choice (mock red flag) #3,-9,-2,2026-07-08T16:08:19.000Z
+d32ce214-7a07-e23a-4984-5662416ff47d,session_mock_13_a1610b,4,3,buratino,Choice (mock safe) #4,9,3,2026-07-08T16:10:43.000Z
+e695f789-9dac-f2c4-3891-12a0cacacef8,session_mock_13_a1610b,5,4,karabas,Choice (mock red flag) #5,-6,-3,2026-07-08T16:13:00.000Z
+002c0483-962d-eaf0-842e-4f46eac8d306,session_mock_13_a1610b,1,5,turtle,Choice (mock safe) #6,11,3,2026-07-08T16:15:38.000Z
