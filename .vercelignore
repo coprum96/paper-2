@@ -1,0 +1,15 @@
+# Keep Vercel upload small (static Vite frontend only)
+gameData.zip
+backend
+img
+.git
+node_modules
+dist
+*.log
+*.zip
+*.rar
+*.7z
+.env
+.env.local
+.env.production
+index-old.html
