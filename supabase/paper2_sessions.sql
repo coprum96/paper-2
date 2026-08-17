@@ -56,7 +56,8 @@ create policy paper2_anon_update
 drop policy if exists paper2_anon_select on public.paper2_sessions;
 
 -- Primary write path: upsert via SECURITY DEFINER (bypasses RLS safely server-side)
-create or replace function public.upsert_paper2_session(row jsonb)
+-- Note: parameter must NOT be named "row" (reserved in PostgreSQL).
+create or replace function public.upsert_paper2_session(p_row jsonb)
 returns uuid
 language plpgsql
 security definer
@@ -65,10 +66,10 @@ as $$
 declare
   v_id uuid;
 begin
-  if row is null
-     or coalesce(row->>'participant_id', '') = ''
-     or row->'payload' is null
-     or jsonb_typeof(row->'payload') <> 'object' then
+  if p_row is null
+     or coalesce(p_row->>'participant_id', '') = ''
+     or p_row->'payload' is null
+     or jsonb_typeof(p_row->'payload') <> 'object' then
     raise exception 'invalid paper2 session payload';
   end if;
 
@@ -87,18 +88,18 @@ begin
     updated_at
   )
   values (
-    row->>'participant_id',
-    (row->>'study')::integer,
-    coalesce((row->>'pilot')::boolean, false),
-    row->>'condition_pressure',
-    row->>'condition_intervention',
-    coalesce((row->>'completed')::boolean, false),
-    nullif(row->>'attention_pass', '')::integer,
-    nullif(row->>'knowledge_score', '')::double precision,
-    nullif(row->>'duration_sec', '')::integer,
-    nullif(row->>'app_version', ''),
-    row->'payload',
-    coalesce((row->>'updated_at')::timestamptz, now())
+    p_row->>'participant_id',
+    (p_row->>'study')::integer,
+    coalesce((p_row->>'pilot')::boolean, false),
+    p_row->>'condition_pressure',
+    p_row->>'condition_intervention',
+    coalesce((p_row->>'completed')::boolean, false),
+    nullif(p_row->>'attention_pass', '')::integer,
+    nullif(p_row->>'knowledge_score', '')::double precision,
+    nullif(p_row->>'duration_sec', '')::integer,
+    nullif(p_row->>'app_version', ''),
+    p_row->'payload',
+    coalesce((p_row->>'updated_at')::timestamptz, now())
   )
   on conflict (participant_id) do update
   set

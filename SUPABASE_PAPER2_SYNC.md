@@ -17,7 +17,7 @@ RPC upsert_paper2_session → table paper2_sessions
 Вы (владелец проекта) → Table Editor → Export CSV / JSON
 ```
 
-Клиент вызывает **RPC** `upsert_paper2_session` (SECURITY DEFINER), а не прямой `upsert` в таблицу. Так anon может писать без SELECT и без ошибки RLS.
+Клиент вызывает **RPC** `upsert_paper2_session(p_row jsonb)` (SECURITY DEFINER), а не прямой `upsert` в таблицу. Так anon может писать без SELECT и без ошибки RLS.
 
 ## Что сделать один раз (или заново при ошибке RLS)
 

@@ -35,7 +35,7 @@ export async function syncPersonToSupabase(person: PersonRecord): Promise<SyncRe
     updated_at: new Date().toISOString(),
   };
 
-  const { error } = await supabase.rpc('upsert_paper2_session', { row });
+  const { error } = await supabase.rpc('upsert_paper2_session', { p_row: row });
 
   if (error) {
     const hint =
