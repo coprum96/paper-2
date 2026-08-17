@@ -16,7 +16,8 @@ export function ConsentScreen() {
   return (
     <ResearchShell>
       <Card className="space-y-4">
-        <h2 className="text-xl font-semibold text-[#8B1E3F]">{COPY.consentTitle}</h2>
+        <p className="text-xs font-semibold uppercase tracking-wide text-[#8B1E3F]">{COPY.consentTitle}</p>
+        <h2 className="text-lg sm:text-xl font-semibold text-[#8B1E3F] leading-snug">{COPY.studyFullTitle}</h2>
         <p className="text-[#3d3d3d] text-sm leading-relaxed">{COPY.consentIntro}</p>
         <ul className="list-disc pl-5 text-sm text-[#3d3d3d] space-y-1">
           {COPY.consentBullets.map((b) => (
@@ -214,9 +215,10 @@ export function BaselineScreen() {
               <span>{COPY.age}</span>
               <input
                 type="number"
+                inputMode="numeric"
                 min={18}
                 max={120}
-                className="w-full rounded-xl border border-[#d9d2c5] bg-[#faf8f4] px-3 py-2 text-[#1a1a1a]"
+                className="w-full rounded-xl border border-[#d9d2c5] bg-[#faf8f4] px-3.5 py-3 text-[16px] text-[#1a1a1a] min-h-[48px]"
                 value={person.age_years ?? ''}
                 onChange={(e) =>
                   patchPerson({ age_years: e.target.value ? Number(e.target.value) : null })
@@ -267,9 +269,13 @@ export function BaselineScreen() {
           </p>
         )}
 
-        <div className="flex flex-wrap gap-3 pt-2">
+        <div className="flex flex-col-reverse sm:flex-row sm:flex-wrap gap-3 pt-2">
           {step > 0 && (
-            <button type="button" className="text-sm text-[#8B1E3F] underline" onClick={back}>
+            <button
+              type="button"
+              className="text-sm text-[#8B1E3F] underline min-h-[44px] sm:min-h-0 py-2 sm:py-0 text-center sm:text-left"
+              onClick={back}
+            >
               {COPY.back}
             </button>
           )}

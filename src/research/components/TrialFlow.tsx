@@ -171,7 +171,7 @@ export function ThoughtListingScreen() {
       <Card className="space-y-4">
         <p className="text-sm text-[#3d3d3d] leading-relaxed">{COPY.thoughtPrompt}</p>
         <textarea
-          className="w-full min-h-[160px] rounded-xl border border-[#d9d2c5] bg-[#faf8f4] px-3 py-2 text-sm text-[#1a1a1a]"
+          className="w-full min-h-[160px] rounded-xl border border-[#d9d2c5] bg-[#faf8f4] px-3.5 py-3 text-[16px] text-[#1a1a1a] leading-relaxed"
           placeholder={COPY.thoughtPlaceholder}
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -232,7 +232,7 @@ export function ManipChecksScreen() {
         <label className="block space-y-2 text-sm">
           <span>{COPY.hypothesisPrompt}</span>
           <textarea
-            className="w-full min-h-[80px] rounded-xl border border-[#d9d2c5] bg-[#faf8f4] px-3 py-2 text-[#1a1a1a]"
+            className="w-full min-h-[96px] rounded-xl border border-[#d9d2c5] bg-[#faf8f4] px-3.5 py-3 text-[16px] text-[#1a1a1a] leading-relaxed"
             value={hypothesis}
             onChange={(e) => setHypothesis(e.target.value)}
           />
@@ -297,9 +297,13 @@ export function CompleteScreen() {
     <ResearchShell title={COPY.completeTitle}>
       <Card className="space-y-4">
         <div className="flex items-center gap-3 pb-2 border-b border-[#d9d2c5]">
-          <img src="/img/spbu_gerb.png" alt="" className="h-14 w-14 object-contain" />
-          <div>
-            <p className="text-xs uppercase tracking-wide text-[#8B1E3F]">СПбГУ</p>
+          <img
+            src={`${import.meta.env.BASE_URL}img/spbu_gerb.png`}
+            alt="Герб СПбГУ"
+            className="h-12 w-12 sm:h-14 sm:w-14 object-contain flex-shrink-0"
+          />
+          <div className="min-w-0">
+            <p className="text-xs uppercase tracking-wide text-[#8B1E3F]">{COPY.institutionShort}</p>
             <p className="font-semibold">{COPY.completeTitle}</p>
           </div>
         </div>
@@ -352,7 +356,7 @@ export function CompleteScreen() {
             Структура данных в порядке (participant + 4 trials). Локальная копия тоже доступна ниже.
           </p>
         )}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col gap-3">
           <PrimaryButton onClick={() => exportPersonJson(person)}>{COPY.downloadJson}</PrimaryButton>
           <PrimaryButton onClick={() => exportTrialsCsv(person)}>{COPY.downloadCsv}</PrimaryButton>
           <PrimaryButton onClick={() => exportPersonCsv(person)}>{COPY.downloadPerson}</PrimaryButton>

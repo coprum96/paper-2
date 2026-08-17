@@ -1,13 +1,18 @@
 # Paper 2 — Research Mode (SPbU experiment shell)
 
-Separate experimental flow inside **Золотой Детектор**. The educational game (lessons, red flags, paywall, Buratino story) is **not** used as the measurement environment.
+Participant-facing study name: **«Цифровые уведомления»**  
+(Full: «Цифровые уведомления: как мы принимаем решения»)
+
+Separate experimental flow. The educational game (lessons, red flags, paywall, Buratino story) is **not** used as the measurement environment.
 
 Protocol source: `empiric_research/outputs/manuscript_paper2/`
+
+Production (Vercel): [https://paper-2-five.vercel.app/?research=1&study=2&pilot=1](https://paper-2-five.vercel.app/?research=1&study=2&pilot=1)
 
 ## Run locally
 
 ```bash
-cd "/Users/stas/Workspace/buratino premium"
+cd "/Users/stas/Workspace/paper-2"
 npm install
 npm run dev
 ```
@@ -33,7 +38,7 @@ Optional: set `VITE_RESEARCH_MODE=true` to force research shell for the whole de
 6. Suspicion + decision confidence  
 7. Manipulation checks + funnel item  
 8. Debrief  
-9. Download JSON / CSV (person + trials)
+9. Cloud sync (Supabase) + optional local JSON / CSV download
 
 Data also persist in `localStorage` key `paper2_research_session_v2` (falls back to v1 on read).
 

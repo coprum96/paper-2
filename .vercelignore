@@ -1,7 +1,7 @@
 # Keep Vercel upload small (static Vite frontend only)
 gameData.zip
 backend
-img
+/img
 .git
 node_modules
 dist
