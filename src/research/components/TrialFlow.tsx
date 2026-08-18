@@ -77,8 +77,8 @@ export function ScenarioTrialScreen() {
 
   const sender =
     pressure === 'authority'
-      ? `${COPY.senderAuthorityPrefix} ${scenario.domain}`
-      : `${COPY.senderControl}: ${scenario.domain}`;
+      ? `${COPY.senderAuthorityPrefix} · ${scenario.domain}`
+      : scenario.domain;
 
   const banner =
     pressure === 'urgency'
