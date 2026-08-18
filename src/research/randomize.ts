@@ -37,6 +37,7 @@ export function parseResearchParams(search = window.location.search): {
   enabled: boolean;
   study: StudyId;
   pilot: boolean;
+  pressureOverride: Pressure | null;
 } {
   const q = new URLSearchParams(search);
   const enabled =
@@ -46,7 +47,12 @@ export function parseResearchParams(search = window.location.search): {
   const studyRaw = q.get('study');
   const study: StudyId = studyRaw === '1' ? 1 : 2;
   const pilot = q.get('pilot') === '1';
-  return { enabled, study, pilot };
+  const pressureRaw = q.get('pressure');
+  const pressureOverride: Pressure | null =
+    pressureRaw === 'control' || pressureRaw === 'urgency' || pressureRaw === 'authority'
+      ? pressureRaw
+      : null;
+  return { enabled, study, pilot, pressureOverride };
 }
 
 /** Equal allocation across 3 pressure × (study2: 2 intervention) cells. */

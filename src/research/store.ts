@@ -40,9 +40,14 @@ function emptyTrial(scenarioId: string, order: number): TrialRecord {
 }
 
 function bootstrap(): { phase: ResearchPhase; person: PersonRecord; trialIndex: number; baselineStep: number } {
-  const { study, pilot } = parseResearchParams();
+  const { study, pilot, pressureOverride } = parseResearchParams();
   const existing = loadPersistedPerson();
-  if (existing && existing.study === study && !existing.completed_at) {
+  const canResume =
+    existing &&
+    existing.study === study &&
+    !existing.completed_at &&
+    (!pressureOverride || existing.condition_pressure === pressureOverride);
+  if (canResume && existing) {
     const idx = existing.trials.findIndex((t) => t.action_code === null);
     const person: PersonRecord = {
       ...existing,
@@ -64,7 +69,7 @@ function bootstrap(): { phase: ResearchPhase; person: PersonRecord; trialIndex: 
     participant_id,
     study,
     pilot,
-    condition_pressure: pressure,
+    condition_pressure: pressureOverride ?? pressure,
     condition_intervention: study === 1 ? 'none' : intervention,
     randomization_seed: seed,
     knowledge_answers: emptyKnowledge(),

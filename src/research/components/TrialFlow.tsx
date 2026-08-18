@@ -110,6 +110,10 @@ export function ScenarioTrialScreen() {
     );
   }
 
+  const urgent = pressure === 'urgency';
+  const lowTime = urgent && secondsLeft > 0 && secondsLeft <= 10;
+  const timerPct = Math.max(0, (secondsLeft / URGENCY_SECONDS) * 100);
+
   return (
     <ResearchShell>
       <div className="space-y-4">
@@ -117,8 +121,26 @@ export function ScenarioTrialScreen() {
         <Card
           className={`space-y-3 ${
             pressure === 'authority' ? 'border-[#8B1E3F]/50 ring-1 ring-[#8B1E3F]/15' : ''
-          }`}
+          } ${urgent ? 'border-[#b42318]/70 ring-2 ring-[#b42318]/25' : ''}`}
         >
+          {urgent && (
+            <div
+              className={`-mx-4 -mt-4 sm:-mx-6 sm:-mt-6 rounded-t-2xl px-4 sm:px-6 py-3 text-white ${
+                secondsLeft === 0 ? 'bg-[#7a1c14]' : lowTime ? 'bg-[#b42318] animate-pulse' : 'bg-[#b42318]'
+              }`}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide">{COPY.timerLabel}</p>
+                <p className="text-4xl sm:text-5xl font-bold tabular-nums leading-none">{secondsLeft}</p>
+              </div>
+              <div className="mt-2 h-1.5 w-full rounded-full bg-white/30 overflow-hidden">
+                <div
+                  className="h-full bg-white transition-[width] duration-1000 linear"
+                  style={{ width: `${timerPct}%` }}
+                />
+              </div>
+            </div>
+          )}
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-wide text-[#7a7368]">Отправитель</p>
@@ -126,17 +148,11 @@ export function ScenarioTrialScreen() {
                 {sender}
               </p>
             </div>
-            {pressure === 'urgency' && (
-              <div className="text-right">
-                <p className="text-xs text-[#b42318]">{COPY.timerLabel}</p>
-                <p className="text-2xl font-bold text-[#b42318] tabular-nums">{secondsLeft}</p>
-              </div>
-            )}
           </div>
-          <p className="text-sm text-[#6f1732]">{banner}</p>
+          <p className={`text-sm font-semibold ${urgent ? 'text-[#b42318]' : 'text-[#6f1732]'}`}>{banner}</p>
           <p className="text-[#1a1a1a] leading-relaxed">{scenario.body}</p>
           <p className="font-medium text-[#1a1a1a]">{scenario.requestLine}</p>
-          {pressure === 'urgency' && secondsLeft === 0 && (
+          {urgent && secondsLeft === 0 && (
             <p className="text-xs text-[#b42318]">{COPY.timerExpired}</p>
           )}
         </Card>
