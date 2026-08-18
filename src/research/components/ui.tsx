@@ -37,6 +37,9 @@ export function ResearchShell({ children, title }: { children: ReactNode; title?
                 <span className="sm:hidden">{COPY.institutionShort}</span>
                 <span className="hidden sm:inline">{COPY.institution}</span>
               </p>
+              <p className="text-[9px] sm:text-[11px] text-[#8B1E3F]/80 leading-tight mt-0.5">
+                {COPY.labName}
+              </p>
               <h1 className="text-[13px] sm:text-base font-semibold text-[#1a1a1a] leading-snug mt-0.5 break-words">
                 {title ?? COPY.appTitle}
               </h1>
@@ -54,10 +57,9 @@ export function ResearchShell({ children, title }: { children: ReactNode; title?
       </header>
       <main className="max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-8 pb-8">{children}</main>
       <footer className="max-w-2xl mx-auto px-3 sm:px-4 pb-6 text-center text-[10px] sm:text-[11px] text-[#7a7368] leading-relaxed">
-        {COPY.institutionShort} · {COPY.appTitle}
-        <br className="sm:hidden" />
-        <span className="hidden sm:inline"> · </span>
-        обезличенные данные · без паролей и данных карт
+        {COPY.institutionShort} · {COPY.labName}
+        <br />
+        {COPY.appTitle} · обезличенные данные · без паролей и данных карт
       </footer>
     </div>
   );

@@ -301,6 +301,7 @@ export function CompleteScreen() {
           />
           <div className="min-w-0">
             <p className="text-xs uppercase tracking-wide text-[#8B1E3F]">{COPY.institutionShort}</p>
+            <p className="text-[10px] sm:text-[11px] text-[#8B1E3F]/80 leading-tight mt-0.5">{COPY.labName}</p>
             <p className="font-semibold text-lg">{COPY.completeTitle}</p>
           </div>
         </div>
