@@ -256,14 +256,18 @@ export function DebriefScreen() {
   const finishDebrief = useResearchStore((s) => s.finishDebrief);
   return (
     <ResearchShell title={COPY.debriefTitle}>
-      <Card className="space-y-4">
-        {COPY.debriefBody.map((p) => (
-          <p key={p} className="text-sm text-[#1a1a1a] leading-relaxed">
-            {p}
-          </p>
+      <Card className="space-y-5">
+        <p className="text-sm sm:text-base text-[#1a1a1a] leading-relaxed">{COPY.debriefIntro}</p>
+        {COPY.debriefSections.map((section) => (
+          <div key={section.title} className="space-y-2">
+            <h3 className="text-sm font-semibold text-[#8B1E3F]">{section.title}</h3>
+            {section.paragraphs.map((p) => (
+              <p key={p} className="text-sm text-[#1a1a1a] leading-relaxed">
+                {p}
+              </p>
+            ))}
+          </div>
         ))}
-        <p className="text-sm text-[#5c5c5c]">{COPY.debriefResource}</p>
-        <p className="text-sm text-[#5c5c5c]">{COPY.debriefContact}</p>
         <PrimaryButton onClick={finishDebrief}>{COPY.continue}</PrimaryButton>
       </Card>
     </ResearchShell>
