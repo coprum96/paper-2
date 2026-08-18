@@ -26,9 +26,19 @@ export interface KnowledgeItem {
 export interface ScenarioFrame {
   id: string;
   domain: string;
+  /** App name on the fake lock-screen push */
+  appName: string;
+  /** Push title (short, like a real notification) */
+  title: string;
   /** Neutral body shared across pressure cells */
   body: string;
   requestLine: string;
+  amount: string;
+  deadline: string;
+  /** “We already know something about you” cue — fictional, not PII */
+  knownLine: string;
+  /** Optional second bubble in the same trial (still one choice) */
+  followUp?: string;
 }
 
 export interface TrialRecord {

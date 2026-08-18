@@ -18,6 +18,7 @@ import { useResearchStore } from '../store';
 import { syncPersonToSupabase, type SyncResult } from '../syncToCloud';
 import type { ActionCode } from '../types';
 import { Card, PrimaryButton, ResearchShell, Scale7, SecondaryButton } from './ui';
+import { PushNotice } from './PushNotice';
 
 function useShuffledActions(seed: string, trialIndex: number) {
   return useMemo(
@@ -44,11 +45,13 @@ export function ScenarioTrialScreen() {
   const needsGate = true; // matched 5s wait for both arms
   const [gateDone, setGateDone] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(URGENCY_SECONDS);
+  const [showFollowUp, setShowFollowUp] = useState(false);
   const actions = useShuffledActions(person.randomization_seed, trialIndex);
 
   useEffect(() => {
     setGateDone(false);
     setSecondsLeft(URGENCY_SECONDS);
+    setShowFollowUp(false);
     markScenarioShown();
     const t = window.setTimeout(() => {
       setGateDone(true);
@@ -57,6 +60,13 @@ export function ScenarioTrialScreen() {
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trialIndex]);
+
+  useEffect(() => {
+    if (!gateDone) return;
+    setShowFollowUp(false);
+    const t = window.setTimeout(() => setShowFollowUp(true), 1800);
+    return () => clearTimeout(t);
+  }, [gateDone, trialIndex]);
 
   useEffect(() => {
     if (pressure !== 'urgency' || !gateDone) return;
@@ -111,51 +121,20 @@ export function ScenarioTrialScreen() {
   }
 
   const urgent = pressure === 'urgency';
-  const lowTime = urgent && secondsLeft > 0 && secondsLeft <= 10;
-  const timerPct = Math.max(0, (secondsLeft / URGENCY_SECONDS) * 100);
 
   return (
     <ResearchShell>
       <div className="space-y-4">
         {trialIndex === 0 && <p className="text-sm text-[#5c5c5c]">{COPY.trialIntro}</p>}
-        <Card
-          className={`space-y-3 ${
-            pressure === 'authority' ? 'border-[#8B1E3F]/50 ring-1 ring-[#8B1E3F]/15' : ''
-          } ${urgent ? 'border-[#b42318]/70 ring-2 ring-[#b42318]/25' : ''}`}
-        >
-          {urgent && (
-            <div
-              className={`-mx-4 -mt-4 sm:-mx-6 sm:-mt-6 rounded-t-2xl px-4 sm:px-6 py-3 text-white ${
-                secondsLeft === 0 ? 'bg-[#7a1c14]' : lowTime ? 'bg-[#b42318] animate-pulse' : 'bg-[#b42318]'
-              }`}
-            >
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide">{COPY.timerLabel}</p>
-                <p className="text-4xl sm:text-5xl font-bold tabular-nums leading-none">{secondsLeft}</p>
-              </div>
-              <div className="mt-2 h-1.5 w-full rounded-full bg-white/30 overflow-hidden">
-                <div
-                  className="h-full bg-white transition-[width] duration-1000 linear"
-                  style={{ width: `${timerPct}%` }}
-                />
-              </div>
-            </div>
-          )}
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="text-xs uppercase tracking-wide text-[#7a7368]">Отправитель</p>
-              <p className={`font-medium ${pressure === 'authority' ? 'text-[#8B1E3F]' : 'text-[#1a1a1a]'}`}>
-                {sender}
-              </p>
-            </div>
-          </div>
-          <p className={`text-sm font-semibold ${urgent ? 'text-[#b42318]' : 'text-[#6f1732]'}`}>{banner}</p>
-          <p className="text-[#1a1a1a] leading-relaxed">{scenario.body}</p>
-          <p className="font-medium text-[#1a1a1a]">{scenario.requestLine}</p>
-          {urgent && secondsLeft === 0 && (
-            <p className="text-xs text-[#b42318]">{COPY.timerExpired}</p>
-          )}
-        </Card>
+        <PushNotice
+          scenario={scenario}
+          sender={sender}
+          banner={banner}
+          urgent={urgent}
+          secondsLeft={secondsLeft}
+          showFollowUp={showFollowUp}
+          pressure={pressure}
+        />
 
         <Card className="space-y-3">
           <p className="text-sm font-medium text-[#1a1a1a]">{COPY.chooseAction}</p>
